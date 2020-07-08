@@ -939,3 +939,15 @@ Note: This binding does not give functions that can obtain an ImFont* from insid
   -- ImGui.ListBoxFooter()
   ImGui.ListBoxFooter()
 ```
+
+## Widgets: Value() Helpers
+```lua
+  -- ImGui.Value(...)
+  -- Parameters: text (prefix) bool/int/unsigned int/float (value), text (float_format) [O] -- format only available with float
+  -- Overloads
+  ImGui.Value("Prefix", true)
+  ImGui.Value("Prefix", -5)
+  ImGui.Value("Prefix", 5)
+  ImGui.Value("Prefix", 5.0)
+  ImGui.Value("Prefix", 5.0, "%.2f")
+```
