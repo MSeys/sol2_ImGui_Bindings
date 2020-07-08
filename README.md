@@ -1114,3 +1114,33 @@ selected, activated = ImGui.MenuItem("Label", "ALT+F4", selected, true)
   -- Returns: int (count)
   count = ImGui.GetColumnsCount()
 ```
+
+## Tab Bars, Tabs
+```lua
+  -- ImGui.BeginTabBar(...)
+  -- Parameters: text (str_id), ImGuiTabBarFlags (flags)
+  -- Returns: bool (open)
+  -- Overloads
+  open = ImGui.BeginTabBar("String ID")
+  open = ImGui.BeginTabBar("String ID", ImGuiTabBarFlags.Reorderable)
+  
+  -- ImGui.EndTabBar()
+  ImGui.EndTabBar()
+  
+  -- ImGui.BeginTabItem()
+  -- Parameters A: text (label)
+  -- Parameters B: text (label), bool (open), ImGuiTabItemFlags (flags) [O]
+  -- Returns A: bool (selected)
+  -- Returns B: bool (open), bool (selected)
+  -- Overloads
+  selected = ImGui.BeginTabItem("Label")
+  open, selected = ImGui.BeginTabItem("Label", open)
+  open, selected = ImGui.BeginTabItem("Label", open, ImGuiTabItemFlags_NoTooltip)
+  
+  -- ImGui.EndTabItem()
+  ImGui.EndTabItem()
+  
+  -- ImGui.SetTabItemClosed(...)
+  -- Parameters: text (tab_or_docked_window_label)
+  ImGui.SetTabItemClosed("MyDockedWindow")
+```
