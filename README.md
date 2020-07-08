@@ -630,3 +630,90 @@ Note: This binding does not give functions that can obtain an ImFont* from insid
   values, used = ImGui.DragInt4("Label", values, 0.01, -10, 10)
   values, used = ImGui.DragInt4("Label", values, 0.01, -10, 10, "%d")
 ```
+
+## Widgets: Sliders
+```lua
+  -- ImGui.SliderFloat(...)
+  -- Parameters: text (label), float (value), float (value_min), float (value_max), text (format) [O], float (power) [O]
+  -- Returns: float (value), bool (used)
+  -- Overloads
+  value, used = ImGui.SliderFloat("Label", value, -10, 10)
+  value, used = ImGui.SliderFloat("Label", value, -10, 10, "%.1f")
+  value, used = ImGui.SliderFloat("Label", value, -10, 10, "%.1f", 0.5)
+  
+  -- ImGui.SliderFloat2(...)
+  -- Parameters: text (label), table (values), float (value_min), float (value_max), text (format) [O], float (power) [O]
+  -- Returns: table (values), bool (used)
+  -- Overloads
+  values, used = ImGui.SliderFloat2("Label", values, 0.01, -10, 10)
+  values, used = ImGui.SliderFloat2("Label", values, 0.01, -10, 10, "%.1f")
+  values, used = ImGui.SliderFloat2("Label", values, 0.01, -10, 10, "%.1f", 0.5)
+  
+  -- ImGui.SliderFloat3(...)
+  -- Parameters: text (label), table (values), float (value_min), float (value_max), text (format) [O], float (power) [O]
+  -- Returns: table (values), bool (used)
+  -- Overloads
+  values, used = ImGui.SliderFloat3("Label", values, 0.01, -10, 10)
+  values, used = ImGui.SliderFloat3("Label", values, 0.01, -10, 10, "%.1f")
+  values, used = ImGui.SliderFloat3("Label", values, 0.01, -10, 10, "%.1f", 0.5)
+  
+  -- ImGui.SliderFloat4(...)
+  -- Parameters: text (label), table (values), float (value_min), float (value_max), text (format) [O], float (power) [O]
+  -- Returns: table (values), bool (used)
+  -- Overloads
+  values, used = ImGui.SliderFloat4("Label", values, 0.01, -10, 10)
+  values, used = ImGui.SliderFloat4("Label", values, 0.01, -10, 10, "%.1f")
+  values, used = ImGui.SliderFloat4("Label", values, 0.01, -10, 10, "%.1f", 0.5)
+  
+  -- ImGui.SliderAngle(...)
+  -- Parameters: text (label), float (v_rad), float (v_degrees_min) [O], float (v_degrees_max) [O], text (format) [O]
+  -- Returns: float (v_rad), bool (used)
+  -- Overloads
+  v_rad, used = ImGui.SliderAngle("Label", v_rad)
+  v_rad, used = ImGui.SliderAngle("Label", v_rad, -255)
+  v_rad, used = ImGui.SliderAngle("Label", v_rad, -255, 360)
+  v_rad, used = ImGui.SliderAngle("Label", v_rad, -255, 360, "%.0f deg")
+  
+  -- ImGui.SliderInt(...)
+  -- Parameters: text (label), int (value), int (value_min), int (value_max), text (format) [O]
+  -- Returns: int (value), bool (used)
+  -- Overloads
+  value, used = ImGui.SliderInt("Label", value, -10, 10)
+  value, used = ImGui.SliderInt("Label", value, -10, 10, "%d")
+  
+  -- ImGui.SliderInt2(...)
+  -- Parameters: text (label), table (values), int (value_min), int (value_max), text (format) [O]
+  -- Returns: table (values), bool (used)
+  -- Overloads
+  values, used = ImGui.SliderInt2("Label", values, -10, 10)
+  values, used = ImGui.SliderInt2("Label", values, -10, 10, "%d")
+  
+  -- ImGui.SliderInt3(...)
+  -- Parameters: text (label), table (values), int (value_min), int (value_max), text (format) [O]
+  -- Returns: table (values), bool (used)
+  -- Overloads
+  values, used = ImGui.SliderInt3("Label", values, -10, 10)
+  values, used = ImGui.SliderInt3("Label", values, -10, 10, "%d")
+  
+  -- ImGui.SliderInt4(...)
+  -- Parameters: text (label), table (values), int (value_min), int (value_max), text (format) [O]
+  -- Returns: table (values), bool (used)
+  -- Overloads
+  values, used = ImGui.SliderInt4("Label", values, -10, 10)
+  values, used = ImGui.SliderInt4("Label", values, -10, 10, "%d")
+  
+  -- ImGui.VSliderFloat(...)
+  -- Parameters: text (label), float (size_x), float (size_y), float (value), float (value_min), float (value_max), text (format) [O], float (power) [O]
+  -- Returns: float (value), bool (used)
+  -- Overloads
+  value, used = ImGui.VSliderFloat("Label", 100, 25, value, -10, 10)
+  value, used = ImGui.VSliderFloat("Label", 100, 25, value, -10, 10, "%.1f")
+  value, used = ImGui.VSliderFloat("Label", 100, 25, value, -10, 10, "%.1f", 0.5)
+  
+  -- ImGui.VSliderInt(...)
+  -- Parameters: text (label), float (size_x), float (size_y), int (value), int (value_min), int (value_max), text (format) [O]
+  -- Returns: int (value), bool (used)
+  -- Overloads
+  value, used = ImGui.VSliderInt("Label", 100, 25, value, -10, 10)
+  value, used = ImGui.VSliderInt("Label", 100, 25, value, -10, 10, "%d")
+```
