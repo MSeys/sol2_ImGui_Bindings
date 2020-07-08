@@ -1,5 +1,16 @@
 # sol2_ImGui_Bindings
 
+Welcome to the sol2 ImGui bindings.
+I spent my time making these over the last few days.
+I hope you think they are useful as there's no others to my knowledge.
+
+If you liked what I did and have some money to spare (I'm a student), you can donate to me at https://paypal.me/mattseys.
+It would be appreciated!
+
+Enjoy! 
+
+You can find all the supported functions and overloads below.
+
 ## Windows
 ```lua
   -- ImGui.Begin(...)
@@ -1356,4 +1367,128 @@ selected, activated = ImGui.MenuItem("Label", "ALT+F4", selected, true)
   -- Parameters: float (h), float (s), float (v)
   -- Returns: float (r), float (g), float (b)
   r, g, b = ImGui.ColorConvertHSVtoRGB(1, 0, 0.5)
+```
+## Inputs Utilities: Keyboard
+```lua
+  -- ImGui.GetKeyIndex(...)
+  -- Parameters: ImGuiKey (key)
+  -- Returns: int (index)
+  index = ImGui.GetKeyIndex(ImGuiKey.Tab)
+  
+  -- ImGui.IsKeyDown(...)
+  -- Parameters: int (key_index)
+  -- Returns: bool (down)
+  down = ImGui.IsKeyDown(0)
+  
+  -- ImGui.IsKeyPressed(...)
+  -- Parameters: int (key_index), bool (repeat) [O]
+  -- Returns: bool (pressed)
+  -- Overloads
+  pressed = ImGui.IsKeyPressed(0)
+  pressed = ImGui.IsKeyPressed(0, true)
+  
+  -- ImGui.IsKeyReleased(...)
+  -- Parameters: int (key_index)
+  -- Returns: bool (released)
+  released = ImGui.IsKeyReleased(0)
+  
+  -- ImGui.GetKeyPressedAmount(...)
+  -- Parameters: int (key_index), float (repeat_delay), float (rate)
+  -- Returns: int (pressed_amount)  
+  pressed_amount = ImGui.GetKeyPressedAmount(0, 0.5, 5)
+  
+  -- ImGui.CaptureKeyboardFromApp(...)
+  -- Parameters: bool (want_capture_keyboard_value) [O]
+  -- Overloads
+  ImGui.CaptureKeyboardFromApp()
+  ImGui.CaptureKeyboardFromApp(false)
+```
+
+## Inputs Utilities: Mouse
+```lua
+  -- ImGui.IsMouseDown(...)
+  -- Parameters: ImGuiMouseButton (button)
+  -- Returns: bool (down)
+  down = ImGui.IsMouseDown(ImGuiMouseButton.Right)
+  
+  -- ImGui.IsMouseClicked(...)
+  -- Parameters: ImGuiMouseButton (button), bool (repeat) [O]
+  -- Returns: bool (clicked)
+  -- Overloads
+  clicked = ImGui.IsMouseClicked(ImGuiMouseButton.Right)
+  clicked = ImGui.IsMouseClicked(ImGuiMouseButton.Right, false)
+  
+  -- ImGui.IsMouseReleased(...)
+  -- Parameters: ImGuiMouseButton (button)
+  -- Returns: bool (released)
+  released = ImGui.IsMouseReleased(ImGuiMouseButton.Right)
+  
+  -- ImGui.IsMouseDoubleClicked(...)
+  -- Parameters: ImGuiMouseButton (button)
+  -- Returns: bool (double_clicked)
+  double_clicked = ImGui.IsMouseDoubleClicked(ImGuiMouseButton.Right)
+  
+  -- ImGui.IsMouseHoveringRect(...)
+  -- Parameters: float (min_x), float (min_y), float(max_x), float(max_y), bool (clip) [O]
+  -- Returns: bool (hovered)
+  hovered = ImGui.IsMouseHoveringRect(0, 0, 100, 100)
+  hovered = ImGui.IsMouseHoveringRect(0, 0, 100, 100, true)
+  
+  -- ImGui.IsAnyMouseDown()
+  -- Returns: bool (any_mouse_down)
+  any_mouse_down = ImGui.IsAnyMouseDown()
+  
+  -- ImGui.GetMousePos()
+  -- Returns: float (x), float (y)
+  x, y = ImGui.GetMousePos()
+  
+  -- ImGui.GetMousePosOnOpeningCurrentPopup()
+  -- Returns: float (x), float (y)
+  x, y = ImGui.GetMousePosOnOpeningCurrentPopup()
+  
+  -- ImGui.IsMouseDragging(...)
+  -- Parameters: ImGuiMouseButton (button), float (lock_threshold) [O]
+  -- Returns: bool (dragging)
+  -- Overloads
+  dragging = ImGui.IsMouseDragging(ImGuiMouseButton.Middle)
+  dragging = ImGui.IsMouseDragging(ImGuiMouseButton.Middle, 0.5)
+  
+  -- ImGui.GetMouseDragDelta(...)
+  -- Parameters: ImGuiMouseButton (button) [O], float (lock_threshold) [O]
+  -- Returns: float (x), float (y)
+  -- Overloads
+  x, y = ImGui.GetMouseDragDelta()
+  x, y = ImGui.GetMouseDragDelta(ImGuiMouseButton.Middle)
+  x, y = ImGui.GetMouseDragDelta(ImGuiMouseButton.Middle, 0.5)
+  
+  -- ImGui.ResetMouseDragDelta(...)
+  -- Parameters: ImGuiMouseButton (button) [O]
+  -- Overloads
+  ImGui.ResetMouseDragDelta()
+  ImGui.ResetMouseDragDelta(ImGuiMouseButton.Middle)
+  
+  -- ImGui.GetMouseCursor()
+  -- Returns: ImGuiMouseCursor (cursor)
+  cursor = ImGui.GetMouseCursor()
+  
+  -- ImGui.SetMouseCursor(...)
+  -- Parameters: ImGuiMouseCursor (cursor_type)
+  ImGui.SetMouseCursor(ImGuiMouseCursor.Hand)
+  
+  -- ImGui.CaptureMouseFromApp()
+  -- Parameters: bool (want_capture_mouse_value) [O]
+  -- Overloads
+  ImGui.CaptureMouseFromApp()
+  ImGui.CaptureMouseFromApp(true)
+```
+
+## Clipboard Utilities
+```lua
+  -- ImGui.GetClipboardText()
+  -- Returns: text (text)
+  text = ImGui.GetClipboardText()
+  
+  -- ImGui.SetClipboardText(...)
+  -- Parameters: text (text)
+  ImGui.SetClipboardText("I made it to the clipboard!")
 ```
