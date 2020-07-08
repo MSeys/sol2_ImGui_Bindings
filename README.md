@@ -543,3 +543,90 @@ Note: This binding does not give functions that can obtain an ImFont* from insid
   current_item, clicked = ImGui.Combo("Label", current_item, "Option1\0Option2\0")
   current_item, clicked = ImGui.Combo("Label", current_item, "Option1\0Option2\0", 5)
 ```
+
+## Widgets: Drags
+```lua
+  -- ImGui.DragFloat(...)
+  -- Parameters: text (label), float (value), float (value_speed) [O], float (value_min) [O], float (value_max) [O], text (format) [O], float (power) [O]
+  -- Returns: float (value), bool (used)
+  -- Overloads
+  value, used = ImGui.DragFloat("Label", value)
+  value, used = ImGui.DragFloat("Label", value, 0.01)
+  value, used = ImGui.DragFloat("Label", value, 0.01, -10)
+  value, used = ImGui.DragFloat("Label", value, 0.01, -10, 10)
+  value, used = ImGui.DragFloat("Label", value, 0.01, -10, 10, "%.1f")
+  value, used = ImGui.DragFloat("Label", value, 0.01, -10, 10, "%.1f", 0.5)
+  
+  -- ImGui.DragFloat2(...)
+  -- Parameters: text (label), table (values), float (value_speed) [O], float (value_min) [O], float (value_max) [O], text (format) [O], float (power) [O]
+  -- Returns: table (values), bool (used)
+  -- Overloads
+  values, used = ImGui.DragFloat2("Label", values)
+  values, used = ImGui.DragFloat2("Label", values, 0.01)
+  values, used = ImGui.DragFloat2("Label", values, 0.01, -10)
+  values, used = ImGui.DragFloat2("Label", values, 0.01, -10, 10)
+  values, used = ImGui.DragFloat2("Label", values, 0.01, -10, 10, "%.1f")
+  values, used = ImGui.DragFloat2("Label", values, 0.01, -10, 10, "%.1f", 0.5)
+  
+  -- ImGui.DragFloat3(...)
+  -- Parameters: text (label), table (values), float (value_speed) [O], float (value_min) [O], float (value_max) [O], text (format) [O], float (power) [O]
+  -- Returns: table (values), bool (used)
+  -- Overloads
+  values, used = ImGui.DragFloat3("Label", values)
+  values, used = ImGui.DragFloat3("Label", values, 0.01)
+  values, used = ImGui.DragFloat3("Label", values, 0.01, -10)
+  values, used = ImGui.DragFloat3("Label", values, 0.01, -10, 10)
+  values, used = ImGui.DragFloat3("Label", values, 0.01, -10, 10, "%.1f")
+  values, used = ImGui.DragFloat3("Label", values, 0.01, -10, 10, "%.1f", 0.5)
+  
+  -- ImGui.DragFloat4(...)
+  -- Parameters: text (label), table (values), float (value_speed) [O], float (value_min) [O], float (value_max) [O], text (format) [O], float (power) [O]
+  -- Returns: table (values), bool (used)
+  -- Overloads
+  values, used = ImGui.DragFloat4("Label", values)
+  values, used = ImGui.DragFloat4("Label", values, 0.01)
+  values, used = ImGui.DragFloat4("Label", values, 0.01, -10)
+  values, used = ImGui.DragFloat4("Label", values, 0.01, -10, 10)
+  values, used = ImGui.DragFloat4("Label", values, 0.01, -10, 10, "%.1f")
+  values, used = ImGui.DragFloat4("Label", values, 0.01, -10, 10, "%.1f", 0.5)
+  
+  -- ImGui.DragInt(...)
+  -- Parameters: text (label), int (value), float (value_speed) [O], int (value_min) [O], int (value_max) [O], text (format) [O]
+  -- Returns: int (value), bool (used)
+  -- Overloads
+  value, used = ImGui.DragInt("Label", value)
+  value, used = ImGui.DragInt("Label", value, 0.01)
+  value, used = ImGui.DragInt("Label", value, 0.01, -10)
+  value, used = ImGui.DragInt("Label", value, 0.01, -10, 10)
+  value, used = ImGui.DragInt("Label", value, 0.01, -10, 10, "%d")
+  
+  -- ImGui.DragInt2(...)
+  -- Parameters: text (label), table (values), float (value_speed) [O], int (value_min) [O], int (value_max) [O], text (format) [O]
+  -- Returns: table (values), bool (used)
+  -- Overloads
+  values, used = ImGui.DragInt2("Label", values)
+  values, used = ImGui.DragInt2("Label", values, 0.01)
+  values, used = ImGui.DragInt2("Label", values, 0.01, -10)
+  values, used = ImGui.DragInt2("Label", values, 0.01, -10, 10)
+  values, used = ImGui.DragInt2("Label", values, 0.01, -10, 10, "%d")
+  
+  -- ImGui.DragInt3(...)
+  -- Parameters: text (label), table (values), float (value_speed) [O], int (value_min) [O], int (value_max) [O], text (format) [O]
+  -- Returns: table (values), bool (used)
+  -- Overloads
+  values, used = ImGui.DragInt3("Label", values)
+  values, used = ImGui.DragInt3("Label", values, 0.01)
+  values, used = ImGui.DragInt3("Label", values, 0.01, -10)
+  values, used = ImGui.DragInt3("Label", values, 0.01, -10, 10)
+  values, used = ImGui.DragInt3("Label", values, 0.01, -10, 10, "%d")
+  
+  -- ImGui.DragInt4(...)
+  -- Parameters: text (label), table (values), float (value_speed) [O], int (value_min) [O], int (value_max) [O], text (format) [O]
+  -- Returns: table (values), bool (used)
+  -- Overloads
+  values, used = ImGui.DragInt4("Label", values)
+  values, used = ImGui.DragInt4("Label", values, 0.01)
+  values, used = ImGui.DragInt4("Label", values, 0.01, -10)
+  values, used = ImGui.DragInt4("Label", values, 0.01, -10, 10)
+  values, used = ImGui.DragInt4("Label", values, 0.01, -10, 10, "%d")
+```
