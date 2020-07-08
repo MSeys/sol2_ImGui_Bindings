@@ -155,3 +155,26 @@
   -- Parameters: text (name)
   ImGui.SetWindowFocus("WindowName")
 ```
+
+## Content Region
+```lua
+  -- ImGui.GetContentRegionMax()
+  -- Returns: float (x), float (y)
+  x, y = ImGui.GetContentRegionMax()
+  
+  -- ImGui.GetContentRegionAvail()
+  -- Returns: float (x), float (y)
+  x, y = ImGui.GetContentRegionAvail()
+  
+  -- ImGui.GetWindowContentRegionMin()
+  -- Returns: float (x), float (y)
+  x, y = ImGui.GetWindowContentRegionMin()
+  
+  -- ImGui.GetWindowContentRegionMax()
+  -- Returns: float (x), float (y)
+  x, y = ImGui.GetWindowContentRegionMax()
+  
+  -- ImGui.GetWindowContentRegionWidth()
+  -- Returns: float (width)
+  x = ImGui.GetWindowContentRegionWidth()
+```
