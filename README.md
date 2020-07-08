@@ -1144,3 +1144,27 @@ selected, activated = ImGui.MenuItem("Label", "ALT+F4", selected, true)
   -- Parameters: text (tab_or_docked_window_label)
   ImGui.SetTabItemClosed("MyDockedWindow")
 ```
+
+## Docking
+```lua
+  -- ImGui.DockSpace(...)
+  -- Parameters: unsigned int (id), float (size_x) [O], float (size_y) [O], ImGuiDockNodeFlags (flags) [O]
+  -- Overloads
+  ImGui.DockSpace(0)
+  ImGui.DockSpace(1, 200, 300)
+  ImGui.DockSpace(1, 200, 300, ImGuiDockNodeFlags.NoDockingInCentralNode)
+  
+  -- ImGui.SetNextWindowDockID(...)
+  -- Parameters: unsigned int (dock_id), ImGuiCond (cond) [O]
+  -- Overloads
+  ImGui.SetNextWindowDockID(0)
+  ImGui.SetNextWindowDockID(0, ImGuiCond.Always)
+  
+  -- ImGui.GetWindowDockID()
+  -- Returns: unsigned int (id)
+  id = ImGui.GetWindowDockID()
+  
+  -- ImGui.IsWindowDocked()
+  -- Returns: bool (docked)
+  docked = ImGui.IsWindowDocked()
+```
