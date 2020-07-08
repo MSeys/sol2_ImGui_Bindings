@@ -1168,3 +1168,57 @@ selected, activated = ImGui.MenuItem("Label", "ALT+F4", selected, true)
   -- Returns: bool (docked)
   docked = ImGui.IsWindowDocked()
 ```
+
+## Logging
+```lua
+  -- ImGui.LogToTTY(...)
+  -- Parameters: int (auto_open_depth) [O]
+  -- Overloads
+  ImGui.LogToTTY()
+  ImGui.LogToTTY(1)
+  
+  -- ImGui.LogToFile(...)
+  -- Parameters: int (auto_open_depth) [O], text (fileName) [O]
+  -- Overloads
+  ImGui.LogToFile()
+  ImGui.LogToFile(1)
+  ImGui.LogToFile(1, "myfile.txt")
+  
+  -- ImGui.LogToClipboard(...)
+  -- Parameters: int (auto_open_depth) [O]
+  -- Overloads
+  ImGui.LogToClipboard()
+  ImGui.LogToClipboard(1)
+  
+  -- ImGui.LogFinish()
+  ImGui.LogFinish()
+  
+  -- ImGui.LogButtons()
+  ImGui.LogButtons()
+  
+  -- ImGui.LogText(...)
+  -- Parameters: text (fmt)
+  ImGui.LogText("I want to log this, thanks.")
+```
+
+## Clipping
+```lua
+  -- ImGui.PushClipRect(...)
+  -- Parameters: float (min_x), float (min_y), float (max_x), float (max_y), bool (intersect_current)
+  ImGui.PushClipRect(0, 0, 100, 100, false)
+  
+  -- ImGui.PopClipRect()
+  ImGui.PopClipRect()
+```
+
+## Focus, Activation
+```lua
+  -- ImGui.SetItemDefaultFocus()
+  ImGui.SetItemDefaultFocus()
+  
+  -- ImGui.SetKeyboardFocusHere(...)
+  -- Parameters: int (offset) [O]
+  -- Overloads
+  ImGui.SetItemDefaultFocus()
+  ImGui.SetItemDefaultFocus(5)
+```
