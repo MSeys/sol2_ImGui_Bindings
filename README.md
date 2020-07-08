@@ -107,4 +107,51 @@
   -- ImGui.SetNextWindowBgAlpha(...)
   -- Parameters: float (alpha)
   ImGui.SetNextWindowBgAlpha(0.5)
+  
+  -- ImGui.SetWindowPos(...)
+  -- Parameters: float (pos_x), float (pos_y), ImguiCond (cond) [O]
+  -- Overloads
+  ImGui.SetWindowPos(100, 100)
+  ImGui.SetWindowPos(100, 100, ImGuiCond.Appearing)
+  
+  -- ImGui.SetWindowSize(...)
+  -- Parameters: float (size_x), float (size_y), ImguiCond (cond) [O]
+  -- Overloads
+  ImGui.SetWindowSize(100, 300)
+  ImGui.SetWindowSize(100, 300, ImGuiCond.Appearing)
+  
+  -- ImGui.SetWindowCollapsed(...)
+  -- Parameters: bool (collapsed), ImguiCond (cond) [O]
+  -- Overloads
+  ImGui.SetWindowCollapsed(false)
+  ImGui.SetWindowCollapsed(true, ImGuiCond.Appearing)
+  
+  -- ImGui.SetWindowFocus()
+  ImGui.SetWindowFocus()
+  
+  -- ImGui.SetWindowFontScale(...)
+  -- Parameters: float (scale)
+  ImGui.SetWindowFontScale(1.2)
+  
+  -- ImGui.SetWindowPos(...)
+  -- Parameters: text (name), float (pos_x), float (pos_y), ImGuiCond (cond) [O]
+  -- Overloads
+  ImGui.SetWindowPos("WindowName", 100, 100)
+  ImGui.SetWindowPos("WindowName", 100, 100, ImGuiCond.Always)
+  
+  -- ImGui.SetWindowSize(...)
+  -- Parameters: text (name), float (size_x), float (size_y), ImGuiCond (cond) [O]
+  -- Overloads
+  ImGui.SetWindowSize("WindowName", 300, 400)
+  ImGui.SetWindowSize("WindowName", 300, 400, ImGuiCond.Always)
+  
+  -- ImGui.SetWindowCollapsed(...)
+  -- Parameters: text (name), bool (collapsed), ImGuiCond (cond) [O]
+  -- Overloads
+  ImGui.SetWindowCollapsed("WindowName", true)
+  ImGui.SetWindowCollapsed("WindowName", false, ImGuiCond.Always)
+  
+  -- ImGui.SetWindowFocus(...)
+  -- Parameters: text (name)
+  ImGui.SetWindowFocus("WindowName")
 ```
