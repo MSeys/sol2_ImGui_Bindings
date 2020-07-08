@@ -1376,9 +1376,10 @@ namespace sol_ImGui
 
 	// Widgets: Selectables
 	// TODO: Only one of Selectable variations is possible due to same parameters for Lua
-	inline std::tuple<bool, bool> Selectable(const std::string& label, bool selected)										{ bool imSelected = ImGui::Selectable(label.c_str(), &selected); return std::make_tuple(selected, imSelected); }
-	inline std::tuple<bool, bool> Selectable(const std::string& label, bool selected, int flags)							{ bool imSelected = ImGui::Selectable(label.c_str(), &selected, static_cast<ImGuiSelectableFlags>(flags)); return std::make_tuple(selected, imSelected); }
-	inline std::tuple<bool, bool> Selectable(const std::string& label, bool selected, int flags, float sizeX, float sizeY)	{ bool imSelected = ImGui::Selectable(label.c_str(), &selected, static_cast<ImGuiSelectableFlags>(flags), { sizeX, sizeY }); return std::make_tuple(selected, imSelected); }
+	inline bool Selectable(const std::string& label)													{ return ImGui::Selectable(label.c_str()); }
+	inline bool Selectable(const std::string& label, bool selected)										{ ImGui::Selectable(label.c_str(), &selected); return selected; }
+	inline bool Selectable(const std::string& label, bool selected, int flags)							{ ImGui::Selectable(label.c_str(), &selected, static_cast<ImGuiSelectableFlags>(flags)); return selected; }
+	inline bool Selectable(const std::string& label, bool selected, int flags, float sizeX, float sizeY){ ImGui::Selectable(label.c_str(), &selected, static_cast<ImGuiSelectableFlags>(flags), { sizeX, sizeY }); return selected; }
 
 	// Widgets: List Boxes
 	inline std::tuple<int, bool> ListBox(const std::string& label, int current_item, const sol::table& items, int items_count)
@@ -1543,7 +1544,7 @@ namespace sol_ImGui
 	inline bool IsItemEdited()																			{ return ImGui::IsItemEdited(); }
 	inline bool IsItemActivated()																		{ return ImGui::IsItemActivated(); }
 	inline bool IsItemDeactivated()																		{ return ImGui::IsItemDeactivated(); }
-	inline bool IsItemDeactivatedAfterEdit() { return ImGui::IsItemDeactivatedAfterEdit(); }
+	inline bool IsItemDeactivatedAfterEdit()															{ return ImGui::IsItemDeactivatedAfterEdit(); }
 	inline bool IsItemToggledOpen()																		{ return ImGui::IsItemToggledOpen(); }
 	inline bool IsAnyItemHovered()																		{ return ImGui::IsAnyItemHovered(); }
 	inline bool IsAnyItemActive()																		{ return ImGui::IsAnyItemActive(); }
@@ -1967,6 +1968,17 @@ namespace sol_ImGui
 			"FittingPolicyDefault_"			, ImGuiTabBarFlags_FittingPolicyDefault_
 		);
 #pragma endregion TabBar Flags
+
+#pragma region TabItem Flags
+		lua.new_enum("ImGuiTabItemFlags",
+			"None"							, ImGuiTabItemFlags_None,
+			"UnsavedDocument"				, ImGuiTabItemFlags_UnsavedDocument,
+			"SetSelected"					, ImGuiTabItemFlags_SetSelected,
+			"NoCloseWithMiddleMouseButton"	, ImGuiTabItemFlags_NoCloseWithMiddleMouseButton,
+			"NoPushId"						, ImGuiTabItemFlags_NoPushId,
+			"NoTooltip"						, ImGuiTabItemFlags_NoTooltip
+		);
+#pragma endregion TabItem Flags
 
 #pragma region DockNode Flags
 		lua.new_enum("ImGuiDockNodeFlags",
@@ -2519,9 +2531,10 @@ namespace sol_ImGui
 
 #pragma region Widgets: Selectables
 		ImGui.set_function("Selectable"						, sol::overload(
-																sol::resolve<std::tuple<bool, bool>(const std::string&, bool)>(Selectable),
-																sol::resolve<std::tuple<bool, bool>(const std::string&, bool, int)>(Selectable),
-																sol::resolve<std::tuple<bool, bool>(const std::string&, bool, int, float, float)>(Selectable)
+																sol::resolve<bool(const std::string&)>(Selectable),
+																sol::resolve<bool(const std::string&, bool)>(Selectable),
+																sol::resolve<bool(const std::string&, bool, int)>(Selectable),
+																sol::resolve<bool(const std::string&, bool, int, float, float)>(Selectable)
 															));
 #pragma endregion Widgets: Selectables
 
