@@ -816,3 +816,46 @@ Note: This binding does not give functions that can obtain an ImFont* from insid
   value, used = ImGui.InputDouble("Label", value, 1, 10, "%.4f")
   value, used = ImGui.InputDouble("Label", value, 1, 10, "%.4f", ImGuiInputTextFlags.None)
 ```
+
+## Widgets: Color Editor / Picker
+```lua
+  -- ImGui.ColorEdit3(...)
+  -- Parameters: text (label), table (col), ImGuiColorEditFlags (flags) [O] 
+  -- Returns: table (col), bool (used)
+  -- Overloads
+  col, used = ImGui.ColorEdit3("Label", col)
+  col, used = ImGui.ColorEdit3("Label", col, ImGuiColorEditFlags.NoTooltip)
+  
+  -- ImGui.ColorEdit4(...)
+  -- Parameters: text (label), table (col), ImGuiColorEditFlags (flags) [O] 
+  -- Returns: table (col), bool (used)
+  -- Overloads
+  col, used = ImGui.ColorEdit4("Label", col)
+  col, used = ImGui.ColorEdit4("Label", col, ImGuiColorEditFlags.NoTooltip)
+  
+  -- ImGui.ColorPicker3(...)
+  -- Parameters: text (label), table (col), ImGuiColorEditFlags (flags) [O] 
+  -- Returns: table (col), bool (used)
+  -- Overloads
+  col, used = ImGui.ColorPicker3("Label", col)
+  col, used = ImGui.ColorPicker3("Label", col, ImGuiColorEditFlags.NoTooltip)
+  
+  -- ImGui.ColorPicker4(...)
+  -- Parameters: text (label), table (col), ImGuiColorEditFlags (flags) [O] 
+  -- Returns: table (col), bool (used)
+  -- Overloads
+  col, used = ImGui.ColorPicker4("Label", col)
+  col, used = ImGui.ColorPicker4("Label", col, ImGuiColorEditFlags.NoTooltip)
+  
+  -- ImGui.ColorButton(...)
+  -- Parameters: text (desc_id), table (col), ImGuiColorEditFlags (flags) [O], float (size_x) [O], float (size_y) [O]
+  -- Returns: bool (pressed)
+  -- Overloads
+  pressed = ImGui.ColorButton("Desc ID", { 1, 0, 0, 1 })
+  pressed = ImGui.ColorButton("Desc ID", { 1, 0, 0, 1 }, ImGuiColorEditFlags.None)
+  pressed = ImGui.ColorButton("Desc ID", { 1, 0, 0, 1 }, ImGuiColorEditFlags.None, 100, 100)
+  
+  -- ImGui.SetColorEditOptions(...)
+  -- Parameters: ImGuiColorEditFlags (flags)
+  ImGui.SetColorEditOptions(ImGuiColorEditFlags.NoTooltip | ImGuiColorEditFlags_NoInputs)
+```
