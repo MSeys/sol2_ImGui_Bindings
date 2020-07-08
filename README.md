@@ -4,7 +4,8 @@
 ```lua
   -- ImGui.Begin(...)
   -- Parameters: text (name), bool (open) [O], ImGuiWindowFlags (flags) [O]
-  -- Returns: bool (open), bool (shouldDraw)
+  -- Returns A: bool (shouldDraw)
+  -- Returns B & C: bool (open), bool (shouldDraw)
   -- Overloads
   shouldDraw = ImGui.Begin("Name")
   open, shouldDraw = ImGui.Begin("Name", open)
@@ -469,4 +470,53 @@ Note: This binding does not give functions that can obtain an ImFont* from insid
   -- ImGui.BulletText(...)
   -- Parameters: text (text)
   ImGui.BulletText("Well hello there, General Kenobi")
+```
+
+## Widgets: Main
+```lua
+  -- ImGui.Button(...)
+  -- Parameters: text (label), float (size_x) [O], float (size_y) [O]
+  -- Returns: bool (clicked)
+  -- Overloads
+  clicked = ImGui.Button("Label")
+  clicked = ImGui.Button("Label", 100, 50)
+  
+  -- ImGui.SmallButton(...)
+  -- Parameters: text (label)
+  -- Returns: bool (clicked)
+  clicked = ImGui.SmallButton("Label")
+  
+  -- ImGui.InvisibleButton(...)
+  -- Parameters: text (label), float (size_x), float (size_y)
+  -- Returns: bool (clicked)
+  clicked = ImGui.InvisibleButton("Label", 100, 50)
+  
+  -- ImGui.ArrowButton(...)
+  -- Parameters: text (str_id), ImGuiDir (dir)
+  -- Returns: bool (clicked)
+  clicked = ImGui.ArrowButton("I have an arrow", ImGuiDir.Down)
+  
+  -- ImGui.Checkbox(...)
+  -- Parameters: text (label), bool (value)
+  -- Returns: bool (value), bool (pressed)
+  value, pressed = ImGui.Checkbox("My Checkbox", value)
+  
+  -- ImGui.RadioButton(...)
+  -- Parameters A: text (label), bool (active)
+  -- Parameters B: text (label), int (value), int (v_button)
+  -- Returns A: bool (pressed)
+  -- Returns B: int (value), bool (pressed)
+  -- Overloads
+  pressed = ImGui.RadioButton("Click me", pressed == true)
+  value, pressed = ImGui.RadioButton("Click me too", value, 2)
+  
+  -- ImGui.ProgressBar(...)
+  -- Parameters: float (fraction), float (size_x) [O], float (size_y) [O], text (overlay) [O]
+  -- Overloads
+  ImGui.ProgressBar(0.5)
+  ImGui.ProgressBar(0.5, 100, 25)
+  ImGui.ProgressBar(0.5, 100, 25, "Loading Failed. Sike. - 50%")
+  
+  -- ImGui.Bullet()
+  ImGui.Bullet()
 ```
