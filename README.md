@@ -437,3 +437,36 @@ Note: This binding does not give functions that can obtain an ImFont* from insid
   id = ImGui.PushID("MyID")
   id = ImGui.PushID("MyID_Begin", "MyID_End")
 ```
+
+## Widgets: Text
+```lua
+  -- ImGui.TextUnformatted(...)
+  -- Parameters: text (text), text (text_end) [O]
+  -- Overloads
+  ImGui.TextUnformatted("I am Unformatted")
+  ImGui.TextUnformatted("I am ", "Unformatted")
+  
+  -- ImGui.Text(...)
+  -- Parameters: text (text)
+  ImGui.Text("Well hello there, General Kenobi")
+  
+  -- ImGui.TextColored(...)
+  -- Parameters: float (color_r), float (color_g), float (color_b), float (color_a), text (text)
+  ImGui.TextColored(1, 0, 0, 1, "Well hello there, General Kenobi")
+  
+  -- ImGui.TextDisabled(...)
+  -- Parameters: text (text)
+  ImGui.TextDisabled("Well hello there, General Kenobi")
+  
+  -- ImGui.TextWrapped(...)
+  -- Parameters: text (text)
+  ImGui.TextWrapped("Well hello there, General Kenobi")
+  
+  -- ImGui.LabelText(...)
+  -- Parameters: text (label), text (text)
+  ImGui.LabelText("Well hello there", "General Kenobi")
+  
+  -- ImGui.BulletText(...)
+  -- Parameters: text (text)
+  ImGui.BulletText("Well hello there, General Kenobi")
+```
