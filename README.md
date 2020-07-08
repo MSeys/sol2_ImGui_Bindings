@@ -320,3 +320,97 @@ Note: This binding does not give functions that can obtain an ImFont* from insid
   -- ImGui.PopButtonRepeat()
   ImGui.PopButtonRepeat()
 ```
+
+## Cursor / Layout
+```lua
+  -- ImGui.Separator()
+  ImGui.Separator
+  
+  -- ImGui.SameLine(...)
+  -- Parameters: float (offset_from_start_x) [O], float (spacing) [O]
+  -- Overloads
+  ImGui.SameLine()
+  ImGui.SameLine(100)
+  ImGui.SameLine(100, 5)
+  
+  -- ImGui.NewLine()
+  ImGui.NewLine()
+  
+  -- ImGui.Spacing()
+  ImGui.Spacing()
+  
+  -- ImGui.Dummy(...)
+  -- Parameters: float (size_x), float (size_y)
+  ImGui.Dummy(100, 200)
+  
+  -- ImGui.Indent(...)
+  -- Parameters: float (indent_w) [O]
+  ImGui.Indent()
+  ImGui.Indent(10)
+  
+  -- ImGui.Unindent(...)
+  -- Parameters: float (indent_w) [O]
+  ImGui.Unindent()
+  ImGui.Unindent(-10)
+  
+  -- ImGui.BeginGroup()
+  ImGui.BeginGroup()
+  
+  -- ImGui.EndGroup()
+  ImGui.EndGroup()
+  
+  -- ImGui.GetCursorPos()
+  -- Returns: float (x), float(y)
+  x, y = ImGui.GetCursorPos()
+  
+  -- ImGui.GetCursorPosX()
+  -- Returns: float (x)
+  x = ImGui.GetCursorPosX()
+  
+  -- ImGui.GetCursorPosY()
+  -- Returns: float (y)
+  y = ImGui.GetCursorPosY()
+  
+  -- ImGui.SetCursorPos(...)
+  -- Parameters: float (x), float (y)
+  ImGui.SetCursorPos(10, 10)
+  
+  -- ImGui.SetCursorPosX(...)
+  -- Parameters: float (x)
+  ImGui.SetCursorPosX(10)
+  
+  -- ImGui.SetCursorPosY(...)
+  -- Parameters: float (y)
+  ImGui.SetCursorPosY(10)
+  
+  -- ImGui.GetCursorStartPos()
+  -- Returns: float (x), float(y)
+  x, y = ImGui.GetCursorStartPos()
+  
+  -- ImGui.GetCursorScreenPos()
+  -- Returns: float (x), float(y)
+  x, y = ImGui.GetCursorScreenPos()
+  
+  -- ImGui.SetCursorScreenPos(...)
+  -- Parameters: float (x), float (y)
+  ImGui.SetCursorScreenPos(10, 10)
+  
+  -- ImGui.AlignTextToFramePadding()
+  ImGui.AlignTextToFramePadding()
+  
+  -- ImGui.GetTextLineHeight()
+  -- Returns: float (height)
+  height = ImGui.GetTextLineHeight()
+  
+  -- ImGui.GetTextLineHeightWithSpacing()
+  -- Returns: float (height)
+  height = ImGui.GetTextLineHeightWithSpacing()
+  
+  -- ImGui.GetFrameHeight()
+  -- Returns: float (height)
+  height = ImGui.GetFrameHeight()
+  
+  -- ImGui.GetFrameHeightWithSpacing()
+  -- Returns: float (height)
+  height = ImGui.GetFrameHeightWithSpacing()
+```
