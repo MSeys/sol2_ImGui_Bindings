@@ -1070,3 +1070,47 @@ selected, activated = ImGui.MenuItem("Label", "ALT+F4", selected, true)
   ImGui.IsPopupOpen("String ID")
   ImGui.IsPopupOpen("String ID", ImGuiPopupFlags.NoOpenOverExistingPopup)
 ```
+
+## Columns
+```lua
+  -- ImGui.Columns(...)
+  -- Parameters: int (count) [O], text (id) [O], bool (border) [O]
+  -- Overloads
+  ImGui.Columns()
+  ImGui.Columns(2)
+  ImGui.Columns(2, "MyOtherColumn")
+  ImGui.Columns(3, "MyColumnWithBorder", true)
+  
+  -- ImGui.NextColumn()
+  ImGui.NextColumn()
+  
+  -- ImGui.GetColumnIndex()
+  -- Returns: int (index)
+  index = ImGui.GetColumnIndex()
+  
+  -- ImGui.GetColumnWidth(...)
+  -- Parameters: int (column_index) [O]
+  -- Returns: float (width)
+  -- Overloads
+  width = ImGui.GetColumnWidth()
+  width = ImGui.getColumnWidth(2)
+  
+  -- ImGui.SetColumnWidth(...)
+  -- Parameters: int (column_index), float (width)
+  ImGui.SetColumnWidth(2, 100)
+  
+  -- ImGui.GetColumnOffset(...)
+  -- Parameters: int (column_index) [O]
+  -- Returns: float (offset)
+  -- Overloads
+  offset = ImGui.GetColumnOffset()
+  offset = ImGui.GetColumnOffset(2)
+  
+  -- ImGui.SetColumnOffset(...)
+  -- Parameters: int (column_index), float (offset)
+  ImGui.SetColumnOffset(2, 10)
+  
+  -- ImGui.GetColumnsCount()
+  -- Returns: int (count)
+  count = ImGui.GetColumnsCount()
+```
