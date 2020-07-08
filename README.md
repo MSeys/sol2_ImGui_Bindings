@@ -520,3 +520,26 @@ Note: This binding does not give functions that can obtain an ImFont* from insid
   -- ImGui.Bullet()
   ImGui.Bullet()
 ```
+
+## Widgets: Combo Box
+```lua
+  -- ImGui.BeginCombo(...)
+  -- Parameters: text (label), text (previewValue), ImGuiComboFlags (flags) [O]
+  -- Returns: bool (shouldDraw)
+  -- Overloads
+  shouldDraw = ImGui.BeginCombo("My Combo", "Preview")
+  shouldDraw = ImGui.BeginCombo("My Combo", "Preview", ImGuiComboFlags.PopupAlignLeft)
+  
+  -- ImGui.EndCombo()
+  ImGui.EndCombo()
+  
+  -- ImGui.Combo(...)
+  -- Parameters A: text (label), int (current_item), table (items), int (items_count), int (popup_max_height_in_items) [O] 
+  -- Parameters B: text (label), int (current_item), text (items_separated_by_zeros), int (popup_max_height_in_items) [O] 
+  -- Returns: int (current_item), bool (clicked)
+  -- Overloads
+  current_item, clicked = ImGui.Combo("Label", current_item, { "Option 1 ", "Option 2" }, 2)
+  current_item, clicked = ImGui.Combo("Label", current_item, { "Option 1 ", "Option 2" }, 2, 5)
+  current_item, clicked = ImGui.Combo("Label", current_item, "Option1\0Option2\0")
+  current_item, clicked = ImGui.Combo("Label", current_item, "Option1\0Option2\0", 5)
+```
