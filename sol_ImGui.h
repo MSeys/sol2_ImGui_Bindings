@@ -6,6 +6,7 @@
 namespace sol_ImGui
 {
 	// Windows
+	inline bool Begin(const std::string& name)															{ return ImGui::Begin(name.c_str()); }
 	inline std::tuple<bool, bool> Begin(const std::string& name, bool open)
 	{
 		if (!open) return std::make_tuple(false, false);
@@ -36,16 +37,19 @@ namespace sol_ImGui
 	inline void End()																					{ ImGui::End(); }
 	
 	// Child Windows
-	inline void BeginChild(const std::string& name)														{ ImGui::BeginChild(name.c_str()); }
-	inline void BeginChild(const std::string& name, float sizeX, float sizeY)							{ ImGui::BeginChild(name.c_str(), { sizeX, sizeY }); }
-	inline void BeginChild(const std::string& name, float sizeX, float sizeY, bool border)				{ ImGui::BeginChild(name.c_str(), { sizeX, sizeY }, border); }
-	inline void BeginChild(const std::string& name, float sizeX, float sizeY, bool border, int flags)	{ ImGui::BeginChild(name.c_str(), { sizeX, sizeY }, border, static_cast<ImGuiWindowFlags>(flags)); }
+	inline bool BeginChild(const std::string& name)														{ return ImGui::BeginChild(name.c_str()); }
+	inline bool BeginChild(const std::string& name, float sizeX)										{ return ImGui::BeginChild(name.c_str(), { sizeX, 0 }); }
+	inline bool BeginChild(const std::string& name, float sizeX, float sizeY)							{ return ImGui::BeginChild(name.c_str(), { sizeX, sizeY }); }
+	inline bool BeginChild(const std::string& name, float sizeX, float sizeY, bool border)				{ return ImGui::BeginChild(name.c_str(), { sizeX, sizeY }, border); }
+	inline bool BeginChild(const std::string& name, float sizeX, float sizeY, bool border, int flags)	{ return ImGui::BeginChild(name.c_str(), { sizeX, sizeY }, border, static_cast<ImGuiWindowFlags>(flags)); }
 	inline void EndChild()																				{ ImGui::EndChild(); }
 
 	// Windows Utilities
 	inline bool IsWindowAppearing()																		{ return ImGui::IsWindowAppearing(); }
 	inline bool IsWindowCollapsed()																		{ return ImGui::IsWindowCollapsed(); }
+	inline bool IsWindowFocused()																		{ return ImGui::IsWindowFocused(); }
 	inline bool IsWindowFocused(int flags)																{ return ImGui::IsWindowFocused(static_cast<ImGuiFocusedFlags>(flags)); }
+	inline bool IsWindowHovered()																		{ return ImGui::IsWindowHovered(); }
 	inline bool IsWindowHovered(int flags)																{ return ImGui::IsWindowHovered(static_cast<ImGuiHoveredFlags>(flags)); }
 	inline ImDrawList* GetWindowDrawList()																{ return nullptr; /* TODO: GetWindowDrawList() ==> UNSUPPORTED */ }
 	inline float GetWindowDpiScale()																	{ return ImGui::GetWindowDpiScale(); }
@@ -107,9 +111,11 @@ namespace sol_ImGui
 	inline void SetScrollFromPosY(float localY, float centerYRatio)										{ ImGui::SetScrollFromPosY(localY, centerYRatio); }
 
 	// Parameters stacks (shared)
-	inline void PushFont(ImFont*)																		{ /* TODO: PushFont() ==> UNSUPPORTED */ }
-	inline void PopFont()																				{ /* TODO: PopFont() ==> UNSUPPORTED */ }
+	inline void PushFont(ImFont* pFont)																	{ ImGui::PushFont(pFont); }
+	inline void PopFont()																				{ ImGui::PopFont(); }
+#ifdef SOL_IMGUI_USE_COLOR_U32
 	inline void PushStyleColor(int idx, int col)														{ ImGui::PushStyleColor(static_cast<ImGuiCol>(idx), ImU32(col)); }
+#endif
 	inline void PushStyleColor(int idx, float colR, float colG, float colB, float colA)					{ ImGui::PushStyleColor(static_cast<ImGuiCol>(idx), { colR, colG, colB, colA }); }
 	inline void PopStyleColor()																			{ ImGui::PopStyleColor(); }
 	inline void PopStyleColor(int count)																{ ImGui::PopStyleColor(count); }
@@ -118,13 +124,15 @@ namespace sol_ImGui
 	inline void PopStyleVar()																			{ ImGui::PopStyleVar(); }
 	inline void PopStyleVar(int count)																	{ ImGui::PopStyleVar(count); }
 	inline std::tuple<float, float, float, float> GetStyleColorVec4(int idx)							{ const auto col{ ImGui::GetStyleColorVec4(static_cast<ImGuiCol>(idx)) };	return std::make_tuple(col.x, col.y, col.z, col.w); }
-	inline ImFont* GetFont()																			{ return nullptr; /* TODO: GetFont() ==> UNSUPPORTED */ }
+	inline ImFont* GetFont()																			{ return ImGui::GetFont(); }
 	inline float GetFontSize()																			{ return ImGui::GetFontSize(); }
 	inline std::tuple<float, float> GetFontTexUvWhitePixel()											{ const auto vec2{ ImGui::GetFontTexUvWhitePixel() };	return std::make_tuple(vec2.x, vec2.y); }
+#ifdef SOL_IMGUI_USE_COLOR_U32
 	inline int GetColorU32(int idx, float alphaMul)														{ return ImGui::GetColorU32(static_cast<ImGuiCol>(idx), alphaMul); }
 	inline int GetColorU32(float colR, float colG, float colB, float colA)								{ return ImGui::GetColorU32({ colR, colG, colB, colA }); }
 	inline int GetColorU32(int col)																		{ return ImGui::GetColorU32(ImU32(col)); }
-
+#endif
+	
 	// Parameters stacks (current window)
 	inline void PushItemWidth(float itemWidth)															{ ImGui::PushItemWidth(itemWidth); }
 	inline void PopItemWidth()																			{ ImGui::PopItemWidth(); }
@@ -1500,6 +1508,141 @@ namespace sol_ImGui
 	inline unsigned int GetWindowDockID()																{ return ImGui::GetWindowDockID(); }
 	inline bool IsWindowDocked()																		{ return ImGui::IsWindowDocked(); }
 	
+	// Logging
+	inline void LogToTTY()																				{ ImGui::LogToTTY(); }
+	inline void LogToTTY(int auto_open_depth)															{ ImGui::LogToTTY(auto_open_depth); }
+	inline void LogToFile()																				{ ImGui::LogToFile(); }
+	inline void LogToFile(int auto_open_depth)															{ ImGui::LogToFile(auto_open_depth); }
+	inline void LogToFile(int auto_open_depth, const std::string& filename)								{ ImGui::LogToFile(auto_open_depth, filename.c_str()); }
+	inline void LogToClipboard()																		{ ImGui::LogToClipboard(); }
+	inline void LogToClipboard(int auto_open_depth)														{ ImGui::LogToClipboard(auto_open_depth); }
+	inline void LogFinish()																				{ ImGui::LogFinish(); }
+	inline void LogButtons()																			{ ImGui::LogButtons(); }
+	inline void LogText(const std::string& fmt)															{ ImGui::LogText(fmt.c_str()); }
+
+	// Drag and Drop
+	// TODO: Drag and Drop ==> UNSUPPORTED
+
+	// Clipping
+	inline void PushClipRect(float min_x, float min_y, float max_x, float max_y, bool intersect_current) { ImGui::PushClipRect({ min_x, min_y }, { max_x, max_y }, intersect_current); }
+	inline void PopClipRect()																			{ ImGui::PopClipRect(); }
+
+	// Focus, Activation
+	inline void SetItemDefaultFocus()																	{ ImGui::SetItemDefaultFocus(); }
+	inline void SetKeyboardFocusHere()																	{ ImGui::SetKeyboardFocusHere(); }
+	inline void SetKeyboardFocusHere(int offset)														{ ImGui::SetKeyboardFocusHere(offset); }
+
+	// Item/Widgets Utilities
+	inline bool IsItemHovered()																			{ return ImGui::IsItemHovered(); }
+	inline bool IsItemHovered(int flags)																{ return ImGui::IsItemHovered(static_cast<ImGuiHoveredFlags>(flags)); }
+	inline bool IsItemActive()																			{ return ImGui::IsItemActive(); }
+	inline bool IsItemFocused()																			{ return ImGui::IsItemFocused(); }
+	inline bool IsItemClicked()																			{ return ImGui::IsItemClicked(); }
+	inline bool IsItemClicked(int mouse_button)															{ return ImGui::IsItemClicked(static_cast<ImGuiMouseButton>(mouse_button)); }
+	inline bool IsItemVisible()																			{ return ImGui::IsItemVisible(); }
+	inline bool IsItemEdited()																			{ return ImGui::IsItemEdited(); }
+	inline bool IsItemActivated()																		{ return ImGui::IsItemActivated(); }
+	inline bool IsItemDeactivated()																		{ return ImGui::IsItemDeactivated(); }
+	inline bool IsItemDeactivatedAfterEdit() { return ImGui::IsItemDeactivatedAfterEdit(); }
+	inline bool IsItemToggledOpen()																		{ return ImGui::IsItemToggledOpen(); }
+	inline bool IsAnyItemHovered()																		{ return ImGui::IsAnyItemHovered(); }
+	inline bool IsAnyItemActive()																		{ return ImGui::IsAnyItemActive(); }
+	inline bool IsAnyItemFocused()																		{ return ImGui::IsAnyItemFocused(); }
+	inline std::tuple<float, float> GetItemRectMin()													{ const auto vec2{ ImGui::GetItemRectMin() }; return std::make_tuple(vec2.x, vec2.y); }
+	inline std::tuple<float, float> GetItemRectMax()													{ const auto vec2{ ImGui::GetItemRectMax() }; return std::make_tuple(vec2.x, vec2.y); }
+	inline std::tuple<float, float> GetItemRectSize()													{ const auto vec2{ ImGui::GetItemRectSize() }; return std::make_tuple(vec2.x, vec2.y); }
+	inline void SetItemAllowOverlap()																	{ ImGui::SetItemAllowOverlap(); }
+
+	// Miscellaneous Utilities
+	inline bool IsRectVisible(float sizeX, float sizeY)													{ return ImGui::IsRectVisible({ sizeX, sizeY }); }
+	inline bool IsRectVisible(float minX, float minY, float maxX, float maxY)							{ return ImGui::IsRectVisible({ minX, minY }, { maxX, maxY }); }
+	inline double GetTime()																				{ return ImGui::GetTime(); }
+	inline int GetFrameCount()																			{ return ImGui::GetFrameCount(); }
+	/* TODO: GetBackgroundDrawList(), GetForeGroundDrawList(), GetDrawListSharedData() ==> UNSUPPORTED */
+	inline std::string GetStyleColorName(int idx)														{ return std::string(ImGui::GetStyleColorName(static_cast<ImGuiCol>(idx))); }
+	/* TODO: SetStateStorage(), GetStateStorage(), CalcListClipping() ==> UNSUPPORTED */
+	inline bool BeginChildFrame(unsigned int id, float sizeX, float sizeY)								{ return ImGui::BeginChildFrame(id, { sizeX, sizeY }); }
+	inline bool BeginChildFrame(unsigned int id, float sizeX, float sizeY, int flags)					{ return ImGui::BeginChildFrame(id, { sizeX, sizeY }, static_cast<ImGuiWindowFlags>(flags)); }
+	inline void EndChildFrame()																			{ return ImGui::EndChildFrame(); }
+
+	// Text Utilities
+	inline std::tuple<float, float> CalcTextSize(const std::string& text)																					{ const auto vec2{ ImGui::CalcTextSize(text.c_str()) }; return std::make_tuple(vec2.x, vec2.y); }
+	inline std::tuple<float, float> CalcTextSize(const std::string& text, const std::string& text_end)														{ const auto vec2{ ImGui::CalcTextSize(text.c_str(), text_end.c_str()) }; return std::make_tuple(vec2.x, vec2.y); }
+	inline std::tuple<float, float> CalcTextSize(const std::string& text, const std::string& text_end, bool hide_text_after_double_hash)					{ const auto vec2{ ImGui::CalcTextSize(text.c_str(), text_end.c_str(), hide_text_after_double_hash) }; return std::make_tuple(vec2.x, vec2.y); }
+	inline std::tuple<float, float> CalcTextSize(const std::string& text, const std::string& text_end, bool hide_text_after_double_hash, float wrap_width)	{ const auto vec2{ ImGui::CalcTextSize(text.c_str(), text_end.c_str(), hide_text_after_double_hash, wrap_width) }; return std::make_tuple(vec2.x, vec2.y); }
+
+	// Color Utilities
+#ifdef SOL_IMGUI_USE_COLOR_U32
+	inline sol::as_table_t<std::vector<float>> ColorConvertU32ToFloat4(unsigned int in)
+	{
+		const auto vec4 = ImGui::ColorConvertU32ToFloat4(in);
+		sol::as_table_t rgba = sol::as_table(std::vector<float>{
+			vec4.x, vec4.y, vec4.z, vec4.w
+		});
+
+		return rgba;
+	}
+	inline unsigned int ColorConvertFloat4ToU32(const sol::table& rgba)
+	{
+		const lua_Number	r{ rgba[1].get<std::optional<lua_Number>>().value_or(static_cast<lua_Number>(0)) },
+							g{ rgba[2].get<std::optional<lua_Number>>().value_or(static_cast<lua_Number>(0)) },
+							b{ rgba[3].get<std::optional<lua_Number>>().value_or(static_cast<lua_Number>(0)) },
+							a{ rgba[4].get<std::optional<lua_Number>>().value_or(static_cast<lua_Number>(0)) };
+		
+		return ImGui::ColorConvertFloat4ToU32({ float(r), float(g), float(b), float(a) });
+	}
+#endif
+	inline std::tuple<float, float, float> ColorConvertRGBtoHSV(float r, float g, float b)
+	{
+		float h{}, s{}, v{};
+		ImGui::ColorConvertRGBtoHSV(r, g, b, h, s, v);
+		return std::make_tuple(h, s, v);
+	}
+	inline std::tuple<float, float, float> ColorConvertHSVtoRGB(float h, float s, float v)
+	{
+		float r{}, g{}, b{};
+		ImGui::ColorConvertHSVtoRGB(h, s, v, r, g, b);
+		return std::make_tuple(r, g, b);
+	}
+
+	// Inputs Utilities: Keyboard
+	inline int GetKeyIndex(int imgui_key)																{ return ImGui::GetKeyIndex(static_cast<ImGuiKey>(imgui_key)); }
+	inline bool IsKeyDown(int user_key_index)															{ return ImGui::IsKeyDown(user_key_index); }
+	inline bool IsKeyPressed(int user_key_index)														{ return ImGui::IsKeyPressed(user_key_index); }
+	inline bool IsKeyPressed(int user_key_index, bool repeat)											{ return ImGui::IsKeyPressed(user_key_index, repeat); }
+	inline bool IsKeyReleased(int user_key_index)														{ return ImGui::IsKeyReleased(user_key_index); }
+	inline int GetKeyPressedAmount(int key_index, float repeat_delay, float rate)						{ return ImGui::GetKeyPressedAmount(key_index, repeat_delay, rate); }
+	inline void CaptureKeyboardFromApp()																{ ImGui::CaptureKeyboardFromApp(); }
+	inline void CaptureKeyboardFromApp(bool want_capture_keyboard_value)								{ ImGui::CaptureKeyboardFromApp(want_capture_keyboard_value); }
+
+	// Inputs Utilities: Mouse
+	inline bool IsMouseDown(int button)																	{ return ImGui::IsMouseDown(static_cast<ImGuiMouseButton>(button)); }
+	inline bool IsMouseClicked(int button)																{ return ImGui::IsMouseClicked(static_cast<ImGuiMouseButton>(button)); }
+	inline bool IsMouseClicked(int button, bool repeat)													{ return ImGui::IsMouseClicked(static_cast<ImGuiMouseButton>(button), repeat); }
+	inline bool IsMouseReleased(int button)																{ return ImGui::IsMouseReleased(static_cast<ImGuiMouseButton>(button)); }
+	inline bool IsMouseDoubleClicked(int button)														{ return ImGui::IsMouseDoubleClicked(static_cast<ImGuiMouseButton>(button)); }
+	inline bool IsMouseHoveringRect(float min_x, float min_y, float max_x, float max_y)					{ return ImGui::IsMouseHoveringRect({ min_x, min_y }, { max_x, max_y }); }
+	inline bool IsMouseHoveringRect(float min_x, float min_y, float max_x, float max_y, bool clip)		{ return ImGui::IsMouseHoveringRect({ min_x, min_y }, { max_x, max_y }, clip); }
+	inline bool IsMousePosValid()																		{ return false; /* TODO: IsMousePosValid() ==> UNSUPPORTED */ }
+	inline bool IsAnyMouseDown()																		{ return ImGui::IsAnyMouseDown(); }
+	inline std::tuple<float, float> GetMousePos()														{ const auto vec2{ ImGui::GetMousePos() }; return std::make_tuple(vec2.x, vec2.y); }
+	inline std::tuple<float, float> GetMousePosOnOpeningCurrentPopup()									{ const auto vec2{ ImGui::GetMousePosOnOpeningCurrentPopup() }; return std::make_tuple(vec2.x, vec2.y); }
+	inline bool IsMouseDragging(int button)																{ return ImGui::IsMouseDragging(static_cast<ImGuiMouseButton>(button)); }
+	inline bool IsMouseDragging(int button, float lock_threshold)										{ return ImGui::IsMouseDragging(static_cast<ImGuiMouseButton>(button), lock_threshold); }
+	inline std::tuple<float, float> GetMouseDragDelta()													{ const auto vec2{ ImGui::GetMouseDragDelta() }; return std::make_tuple(vec2.x, vec2.y); }
+	inline std::tuple<float, float> GetMouseDragDelta(int button)										{ const auto vec2{ ImGui::GetMouseDragDelta(static_cast<ImGuiMouseButton>(button)) }; return std::make_tuple(vec2.x, vec2.y); }
+	inline std::tuple<float, float> GetMouseDragDelta(int button, float lock_threshold)					{ const auto vec2{ ImGui::GetMouseDragDelta(static_cast<ImGuiMouseButton>(button), lock_threshold) }; return std::make_tuple(vec2.x, vec2.y); }
+	inline void ResetMouseDragDelta()																	{ ImGui::ResetMouseDragDelta(); }
+	inline void ResetMouseDragDelta(int button)															{ ImGui::ResetMouseDragDelta(static_cast<ImGuiMouseButton>(button)); }
+	inline int GetMouseCursor()																			{ return ImGui::GetMouseCursor(); }
+	inline void SetMouseCursor(int cursor_type)															{ ImGui::SetMouseCursor(static_cast<ImGuiMouseCursor>(cursor_type)); }
+	inline void CaptureMouseFromApp()																	{ ImGui::CaptureMouseFromApp(); }
+	inline void CaptureMouseFromApp(bool want_capture_mouse_value)										{ ImGui::CaptureMouseFromApp(want_capture_mouse_value); }
+
+	// Clipboard Utilities
+	inline std::string GetClipboardText()																{ return std::string(ImGui::GetClipboardText()); }
+	inline void SetClipboardText(const std::string& text)												{ ImGui::SetClipboardText(text.c_str()); }
+	
 	inline void InitEnums(sol::state& lua)
 	{
 #pragma region Window Flags
@@ -1836,6 +1979,59 @@ namespace sol_ImGui
 			"AutoHideTabBar"				, ImGuiDockNodeFlags_AutoHideTabBar
 		);
 #pragma endregion DockNode Flags
+
+#pragma region MouseButton
+		lua.new_enum("ImGuiMouseButton",
+			"ImGuiMouseButton_Left"			, ImGuiMouseButton_Left,
+			"ImGuiMouseButton_Right"		, ImGuiMouseButton_Right,
+			"ImGuiMouseButton_Middle"		, ImGuiMouseButton_Middle,
+			"ImGuiMouseButton_COUNT"		, ImGuiMouseButton_COUNT
+		);
+#pragma endregion MouseButton
+
+#pragma region Key
+		lua.new_enum("ImGuiKey",
+			"Tab"							, ImGuiKey_Tab,
+			"LeftArrow"						, ImGuiKey_LeftArrow,
+			"RightArrow"					, ImGuiKey_RightArrow,
+			"UpArrow"						, ImGuiKey_UpArrow,
+			"DownArrow"						, ImGuiKey_DownArrow,
+			"PageUp"						, ImGuiKey_PageUp,
+			"PageDown"						, ImGuiKey_PageDown,
+			"Home"							, ImGuiKey_Home,
+			"End"							, ImGuiKey_End,
+			"Insert"						, ImGuiKey_Insert,
+			"Delete"						, ImGuiKey_Delete,
+			"Backspace"						, ImGuiKey_Backspace,
+			"Space"							, ImGuiKey_Space,
+			"Enter"							, ImGuiKey_Enter,
+			"Escape"						, ImGuiKey_Escape,
+			"KeyPadEnter"					, ImGuiKey_KeyPadEnter,
+			"A"								, ImGuiKey_A,
+			"C"								, ImGuiKey_C,
+			"V"								, ImGuiKey_V,
+			"X"								, ImGuiKey_X,
+			"Y"								, ImGuiKey_Y,
+			"Z"								, ImGuiKey_Z,
+			"COUNT"							, ImGuiKey_COUNT
+		);
+#pragma endregion Key
+
+#pragma region MouseCursor
+		lua.new_enum("ImGuiMouseCursor",
+			"None"							, ImGuiMouseCursor_None,
+			"Arrow"							, ImGuiMouseCursor_Arrow,
+			"TextInput"						, ImGuiMouseCursor_TextInput,
+			"ResizeAll"						, ImGuiMouseCursor_ResizeAll,
+			"ResizeNS"						, ImGuiMouseCursor_ResizeNS,
+			"ResizeEW"						, ImGuiMouseCursor_ResizeEW,
+			"ResizeNESW"					, ImGuiMouseCursor_ResizeNESW,
+			"ResizeNWSE"					, ImGuiMouseCursor_ResizeNWSE,
+			"Hand"							, ImGuiMouseCursor_Hand,
+			"NotAllowed"					, ImGuiMouseCursor_NotAllowed,
+			"COUNT"							, ImGuiMouseCursor_COUNT
+		);
+#pragma endregion MouseCursor
 	}
 	
 	inline void Init(sol::state& lua)
@@ -1846,6 +2042,7 @@ namespace sol_ImGui
 
 #pragma region Windows
 		ImGui.set_function("Begin"							, sol::overload(
+																sol::resolve<bool(const std::string&)>(Begin),
 																sol::resolve<std::tuple<bool, bool>(const std::string&, bool)>(Begin), 
 																sol::resolve<std::tuple<bool, bool>(const std::string&, bool, int)>(Begin)
 															));
@@ -1854,10 +2051,11 @@ namespace sol_ImGui
 
 #pragma region Child Windows
 		ImGui.set_function("BeginChild"						, sol::overload(
-																sol::resolve<void(const std::string&)>(BeginChild), 
-																sol::resolve<void(const std::string&, float, float)>(BeginChild), 
-																sol::resolve<void(const std::string&, float, float, bool)>(BeginChild), 
-																sol::resolve<void(const std::string&, float, float, bool, int)>(BeginChild)
+																sol::resolve<bool(const std::string&)>(BeginChild), 
+																sol::resolve<bool(const std::string&, float)>(BeginChild), 
+																sol::resolve<bool(const std::string&, float, float)>(BeginChild),
+																sol::resolve<bool(const std::string&, float, float, bool)>(BeginChild), 
+																sol::resolve<bool(const std::string&, float, float, bool, int)>(BeginChild)
 															));
 		ImGui.set_function("EndChild"						, EndChild);
 #pragma endregion Child Windows
@@ -1865,8 +2063,14 @@ namespace sol_ImGui
 #pragma region Window Utilities
 		ImGui.set_function("IsWindowAppearing"				, IsWindowAppearing);
 		ImGui.set_function("IsWindowCollapsed"				, IsWindowCollapsed);
-		ImGui.set_function("IsWindowFocused"				, IsWindowFocused);
-		ImGui.set_function("IsWindowHovered"				, IsWindowHovered);
+		ImGui.set_function("IsWindowFocused"				, sol::overload(
+																sol::resolve<bool()>(IsWindowFocused),
+																sol::resolve<bool(int)>(IsWindowFocused)
+															));
+		ImGui.set_function("IsWindowHovered"				, sol::overload(
+																sol::resolve<bool()>(IsWindowHovered),
+																sol::resolve<bool(int)>(IsWindowHovered)
+															));
 		ImGui.set_function("GetWindowDpiScale"				, GetWindowDpiScale);
 		ImGui.set_function("GetWindowPos"					, GetWindowPos);
 		ImGui.set_function("GetWindowSize"					, GetWindowSize);
@@ -1950,22 +2154,31 @@ namespace sol_ImGui
 #pragma endregion Windows Scrolling
 		
 #pragma region Parameters stacks (shared)
+		ImGui.set_function("PushFont"						, PushFont);
+		ImGui.set_function("PopFont"						, PopFont);
+#ifdef SOL_IMGUI_USE_COLOR_U32
 		ImGui.set_function("PushStyleColor"					, sol::overload(
 																sol::resolve<void(int, int)>(PushStyleColor),
 																sol::resolve<void(int, float, float, float, float)>(PushStyleColor)
 															));
+#else
+		ImGui.set_function("PushStyleColor"					, PushStyleColor);
+#endif
 		ImGui.set_function("PopStyleColor"					, sol::overload(
 																sol::resolve<void()>(PopStyleColor),
 																sol::resolve<void(int)>(PopStyleColor)
 															));
 		ImGui.set_function("GetStyleColorVec4"				, GetStyleColorVec4);
+		ImGui.set_function("GetFont"						, GetFont);
 		ImGui.set_function("GetFontSize"					, GetFontSize);
 		ImGui.set_function("GetFontTexUvWhitePixel"			, GetFontTexUvWhitePixel);
+#ifdef SOL_IMGUI_USE_COLOR_U32
 		ImGui.set_function("GetColorU32"					, sol::overload(
 																sol::resolve<int(int, float)>(GetColorU32),
 																sol::resolve<int(float, float, float, float)>(GetColorU32), 
 																sol::resolve<int(int)>(GetColorU32)
 															));
+#endif
 #pragma endregion Parameters stacks (shared)
 		
 #pragma region Parameters stacks (current window)
@@ -2451,5 +2664,150 @@ namespace sol_ImGui
 		ImGui.set_function("GetWindowDockID"				, GetWindowDockID);
 		ImGui.set_function("IsWindowDocked"					, IsWindowDocked);
 #pragma endregion Docking
+
+#pragma region Logging / Capture
+		ImGui.set_function("LogToTTY"						, sol::overload(
+																sol::resolve<void()>(LogToTTY),
+																sol::resolve<void(int)>(LogToTTY)
+															));
+		ImGui.set_function("LogToFile"						, sol::overload(
+																sol::resolve<void(int)>(LogToFile),
+																sol::resolve<void(int, const std::string&)>(LogToFile)
+															));
+		ImGui.set_function("LogToClipboard"					, sol::overload(
+																sol::resolve<void()>(LogToClipboard),
+																sol::resolve<void(int)>(LogToClipboard)
+															));
+		ImGui.set_function("LogFinish"						, LogFinish);
+		ImGui.set_function("LogButtons"						, LogButtons);
+		ImGui.set_function("LogText"						, LogText);
+#pragma endregion Logging / Capture
+
+#pragma region Clipping
+		ImGui.set_function("PushClipRect"					, PushClipRect);
+		ImGui.set_function("PopClipRect"					, PopClipRect);
+#pragma endregion Clipping
+
+#pragma region Focus, Activation
+		ImGui.set_function("SetItemDefaultFocus"			, SetItemDefaultFocus);
+		ImGui.set_function("SetKeyboardFocusHere"			, sol::overload(
+																sol::resolve<void()>(SetKeyboardFocusHere),
+																sol::resolve<void(int)>(SetKeyboardFocusHere)
+															));
+#pragma endregion Focus, Activation
+
+#pragma region Item/Widgets Utilities
+		ImGui.set_function("IsItemHovered"					, sol::overload(
+																sol::resolve<bool()>(IsItemHovered),
+																sol::resolve<bool(int)>(IsItemHovered)
+															));
+		ImGui.set_function("IsItemActive"					, IsItemActive);
+		ImGui.set_function("IsItemFocused"					, IsItemFocused);
+		ImGui.set_function("IsItemClicked"					, sol::overload(
+																sol::resolve<bool()>(IsItemClicked),
+																sol::resolve<bool(int)>(IsItemClicked)
+															));
+		ImGui.set_function("IsItemVisible"					, IsItemVisible);
+		ImGui.set_function("IsItemEdited"					, IsItemEdited);
+		ImGui.set_function("IsItemActivated"				, IsItemActivated);
+		ImGui.set_function("IsItemDeactivated"				, IsItemDeactivated);
+		ImGui.set_function("IsItemDeactivatedAfterEdit"		, IsItemDeactivatedAfterEdit);
+		ImGui.set_function("IsItemToggledOpen"				, IsItemToggledOpen);
+		ImGui.set_function("IsAnyItemHovered"				, IsAnyItemHovered);
+		ImGui.set_function("IsAnyItemActive"				, IsAnyItemActive);
+		ImGui.set_function("IsAnyItemFocused"				, IsAnyItemFocused);
+		ImGui.set_function("GetItemRectMin"					, GetItemRectMin);
+		ImGui.set_function("GetItemRectMax"					, GetItemRectMax);
+		ImGui.set_function("GetItemRectSize"				, GetItemRectSize);
+		ImGui.set_function("SetItemAllowOverlap"			, SetItemAllowOverlap);
+#pragma endregion Item/Widgets Utilities
+
+#pragma region Miscellaneous Utilities
+		ImGui.set_function("IsRectVisible"					, sol::overload(
+																sol::resolve<bool(float, float)>(IsRectVisible),
+																sol::resolve<bool(float, float, float, float)>(IsRectVisible)
+															));
+		ImGui.set_function("GetTime"						, GetTime);
+		ImGui.set_function("GetFrameCount"					, GetFrameCount);
+		ImGui.set_function("GetStyleColorName"				, GetStyleColorName);
+		ImGui.set_function("BeginChildFrame"				, sol::overload(
+																sol::resolve<bool(unsigned int, float, float)>(BeginChildFrame),
+																sol::resolve<bool(unsigned int, float, float, int)>(BeginChildFrame)
+															));
+		ImGui.set_function("EndChildFrame"					, EndChildFrame);
+#pragma endregion Miscellaneous Utilities
+
+#pragma region Text Utilities
+		ImGui.set_function("CalcTextSize"					, sol::overload(
+																sol::resolve<std::tuple<float, float>(const std::string&)>(CalcTextSize),
+																sol::resolve<std::tuple<float, float>(const std::string&, const std::string&)>(CalcTextSize),
+																sol::resolve<std::tuple<float, float>(const std::string&, const std::string&, bool)>(CalcTextSize),
+																sol::resolve<std::tuple<float, float>(const std::string&, const std::string&, bool, float)>(CalcTextSize)
+															));
+#pragma endregion Text Utilities
+
+#pragma region Color Utilities
+#ifdef SOL_IMGUI_USE_COLOR_U32
+		ImGui.set_function("ColorConvertU32ToFloat4"		, ColorConvertU32ToFloat4);
+		ImGui.set_function("ColorConvertFloat4ToU32"		, ColorConvertFloat4ToU32);
+#endif
+		ImGui.set_function("ColorConvertRGBtoHSV"			, ColorConvertRGBtoHSV);
+		ImGui.set_function("ColorConvertHSVtoRGB"			, ColorConvertHSVtoRGB);
+#pragma endregion Color Utilities
+
+#pragma region Inputs Utilities: Keyboard
+		ImGui.set_function("GetKeyIndex"					, GetKeyIndex);
+		ImGui.set_function("IsKeyDown"						, IsKeyDown);
+		ImGui.set_function("IsKeyPressed"					, sol::overload(
+																sol::resolve<bool(int)>(IsKeyPressed),
+																sol::resolve<bool(int, bool)>(IsKeyPressed)
+															));
+		ImGui.set_function("IsKeyReleased"					, IsKeyReleased);
+		ImGui.set_function("CaptureKeyboardFromApp"			, sol::overload(
+																sol::resolve<void()>(CaptureKeyboardFromApp),
+																sol::resolve<void(bool)>(CaptureKeyboardFromApp)
+															));
+#pragma endregion Inputs Utilities: Keyboard
+
+#pragma region Inputs Utilities: Mouse
+		ImGui.set_function("IsMouseDown"					, IsMouseDown);
+		ImGui.set_function("IsMouseClicked"					, sol::overload(
+																sol::resolve<bool(int)>(IsMouseClicked),
+																sol::resolve<bool(int, bool)>(IsMouseClicked)
+															));
+		ImGui.set_function("IsMouseReleased"				, IsMouseReleased);
+		ImGui.set_function("IsMouseDoubleClicked"			, IsMouseDoubleClicked);
+		ImGui.set_function("IsMouseHoveringRect"			, sol::overload(
+																sol::resolve<bool(float, float, float, float)>(IsMouseHoveringRect),
+																sol::resolve<bool(float, float, float, float, bool)>(IsMouseHoveringRect)
+															));
+		ImGui.set_function("IsAnyMouseDown"					, IsAnyMouseDown);
+		ImGui.set_function("GetMousePos"					, GetMousePos);
+		ImGui.set_function("GetMousePosOnOpeningCurrentPopup", GetMousePosOnOpeningCurrentPopup);
+		ImGui.set_function("IsMouseDragging"				, sol::overload(
+																sol::resolve<bool(int)>(IsMouseDragging),
+																sol::resolve<bool(int, float)>(IsMouseDragging)
+															));
+		ImGui.set_function("GetMouseDragDelta"				, sol::overload(
+																sol::resolve<std::tuple<float, float>()>(GetMouseDragDelta),
+																sol::resolve<std::tuple<float, float>(int)>(GetMouseDragDelta),
+																sol::resolve<std::tuple<float, float>(int, float)>(GetMouseDragDelta)
+															));
+		ImGui.set_function("ResetMouseDragDelta"			, sol::overload(
+																sol::resolve<void()>(ResetMouseDragDelta),
+																sol::resolve<void(int)>(ResetMouseDragDelta)
+															));
+		ImGui.set_function("GetMouseCursor"					, GetMouseCursor);
+		ImGui.set_function("SetMouseCursor"					, SetMouseCursor);
+		ImGui.set_function("CaptureMouseFromApp"			, sol::overload(
+																sol::resolve<void()>(CaptureMouseFromApp),
+																sol::resolve<void(bool)>(CaptureMouseFromApp)
+															));
+#pragma endregion Inputs Utilities: Mouse
+		
+#pragma region Clipboard Utilities
+		ImGui.set_function("GetClipboardText"				, GetClipboardText);
+		ImGui.set_function("SetClipboardText"				, SetClipboardText);
+#pragma endregion Clipboard Utilities
 	}
 }
