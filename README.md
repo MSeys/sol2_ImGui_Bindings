@@ -229,3 +229,53 @@
   ImGui.SetScrollFromPosY(10)
   ImGui.SetScrollFromPosY(10, 0.5)
 ```
+
+## Parameters Stacks (Shared)
+Note: This binding does not give functions that can obtain an ImFont* from inside Lua (besides GetFont), You'll need to add your own.
+```lua
+  -- ImGui.PushFont(...)
+  -- Parameters: ImFont* (font)
+  ImGui.PushFont(font) -- font is obtained from your own custom function
+  
+  -- ImGui.PopFont()
+  ImGui.PopFont()
+  
+  -- ImGui.PushStyleColor(...)
+  -- Parameters: ImGuiCol (idx), float (color_r), float (color_g), float (color_b), float (color_a)
+  ImGui.PushStyleColor(ImGuiCol.Border, 1, 0, 0, 1)
+  
+  -- ImGui.PopStyleColor(...)
+  -- Parameters: int (count) [O]
+  -- Overloads
+  ImGui.PopStyleColor()
+  ImGui.PopStyleColor(5)
+  
+  -- ImGui.PushStyleVar(...)
+  -- Parameters A: ImGuiStyleVar (idx), float (value)
+  -- Parameters B: ImGuiStyleVar (idx), float (value_x), float (value_y)
+  -- Overloads
+  ImGui.PushStyleVar(ImGuiStyleVar.Alpha, 0.5)
+  ImGui.PushStyleVar(ImGuiStyleVar.WindowPadding, 0.2, 0.1)
+  
+  -- ImGui.PopStyleVar(...)
+  -- Parameters: int (count) [O]
+  ImGui.PopStyleVar()
+  ImGui.PopStyleVar(2)
+  
+  -- ImGui.GetStyleColorVec4(...)
+  -- Parameters: ImGuiCol (idx)
+  -- Returns: float (color_r), float (color_g), float (color_b), float (color_a)
+  color_r, color_g, color_b, color_a = ImGui.GetStyleColorVec4(ImGuiCol.Text)
+  
+  -- ImGui.GetFont()
+  -- Returns: ImFont* (font) -- Only function in ImGui giving a font
+  font = ImGui.GetFont()
+  
+  -- ImGui.GetFontSize()
+  -- Returns: float (fontSize)
+  fontSize = ImGui.GetFontSize()
+  
+  -- ImGui.GetFontTexUvWhitePixel()
+  -- Returns: float (x), float (y)
+  x, y = ImGui.GetFontTexUvWhitePixel()
+```
