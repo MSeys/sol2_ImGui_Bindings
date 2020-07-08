@@ -917,3 +917,25 @@ Note: This binding does not give functions that can obtain an ImFont* from insid
   selected = ImGui.Selectable("Label", selected, ImGuiSelectableFlags.AllowDoubleClick)
   selected = ImGui.Selectable("Label", selected, ImGuiSelectableFlags.AllowDoubleClick, 100, 100)
 ```
+
+## Widgets: List Boxes
+```lua
+  -- ImGui.ListBox(...)
+  -- Parameters: text (label), int (current_item), table (items), int (items_count), int (height_in_items) [O]
+  -- Returns: int (current_item), bool (clicked)
+  -- Overloads
+  current_item, clicked = ImGui.ListBox("Label", current_item, { "Item 1", "Item 2", 2 })
+  current_item, clicked = ImGui.ListBox("Label", current_item, { "Item 1", "Item 2", 2 }, 5)
+  
+  -- ImGui.ListBoxHeader(...)
+  -- Parameters A: text (label), float (size_x), float (size_y) 
+  -- Parameters B: text (label), int (items_count), int (height_in_items) [0]
+  -- Returns: bool (open)
+  -- Overloads
+  open = ImGui.ListBoxHeader("Label", 100.0, 100.0) -- size as params
+  open = ImGui.ListBoxHeader("Label", 5)
+  open = ImGui.ListBoxHeader("Label", 5, 5)     -- items count and height
+  
+  -- ImGui.ListBoxFooter()
+  ImGui.ListBoxFooter()
+```
