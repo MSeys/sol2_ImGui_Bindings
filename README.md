@@ -951,3 +951,43 @@ Note: This binding does not give functions that can obtain an ImFont* from insid
   ImGui.Value("Prefix", 5.0)
   ImGui.Value("Prefix", 5.0, "%.2f")
 ```
+
+## Widgets: Menus
+```lua
+-- ImGui.BeginMenuBar()
+-- Returns: bool (shouldDraw)
+shouldDraw = ImGui.BeginMenuBar()
+
+-- ImGui.EndMenuBar()
+ImGui.EndMenuBar()
+
+-- ImGui.BeginMainMenuBar()
+-- Returns: bool (shouldDraw)
+shouldDraw = ImGui.BeginMainMenuBar()
+
+-- ImGui.EndMainMenuBar()
+ImGui.EndMainMenuBar()
+
+-- ImGui.BeginMenu(...)
+-- Parameters: text (label), bool (enabled) [O]
+-- Returns: bool (shouldDraw)
+-- Overloads
+shouldDraw = ImGui.BeginMenu("Label")
+shouldDraw = ImGui.BeginMenu("Label", true)
+
+-- ImGui.EndMenu()
+ImGui.EndMenu()
+
+-- ImGui.MenuItem(...)
+-- Parameters A: text (label), text (shortcut) [0]
+-- Parameters B: text (label), text (shortcut), bool (selected)
+-- Returns A: bool (activated)
+-- returns B: bool (selected), bool (activated)
+-- Overloads
+activated = ImGui.MenuItem("Label")
+activated = ImGui.MenuItem("Label", "ALT+F4")
+selected, activated = ImGui.MenuItem("Label", "ALT+F4", selected)
+selected, activated = ImGui.MenuItem("Label", "ALT+F4", selected, true)
+
+
+```
