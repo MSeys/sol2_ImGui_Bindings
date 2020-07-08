@@ -1298,3 +1298,62 @@ selected, activated = ImGui.MenuItem("Label", "ALT+F4", selected, true)
   -- ImGui.SetItemAllowOverlap()
   ImGui.SetItemAllowOverlap()
 ```
+
+## Miscellaneous Utilities
+```lua
+  -- ImGui.IsRectVisible(...)
+  -- Parameters A: float (size_x), float (size_y)
+  -- Parameters B: float(min_x), float (min_y), float (max_x), float (max_y)
+  -- Returns: bool (visible)
+  -- Overloads
+  visible = ImGui.IsRectVisible(100, 100)
+  visible = ImGui.IsRectVisible(50, 50, 200, 200)
+  
+  -- ImGui.GetTime()
+  -- Returns double (time)
+  time = ImGui.GetTime()
+  
+  -- ImGui.GetFrameCount()
+  -- Returns int (frame_count)
+  frame_count = ImGui.GetFrameCount()
+  
+  -- ImGui.GetStyleColorName(...)
+  -- Parameters: ImGuiCol (idx)
+  -- Returns: text (style_color_name)
+  style_color_name = ImGui.GetStyleColorName(ImGuiCol.Text)
+  
+  -- ImGui.BeginChildFrame(...)
+  -- Parameters: unsigned int (id), float (size_x), float (size_y), ImGuiWindowFlags (flags) [O]
+  -- Returns: bool (open)
+  -- Overloads
+  open = ImGui.BeginChildFrame(0, 100, 100)
+  open = ImGui.BeginChildFrame(0, 100, 100, ImGuiWindowFlags.NoBackground)
+  
+  -- ImGui.EndChildFrame()
+  ImGui.EndChildFrame()
+```
+
+## Text Utilities
+```lua
+  -- ImGui.CalcTextSize(...)
+  -- Parameters: text (text), text (text_end) [O], bool (hide_text_after_double_hash) [O], float (wrap_width) [O]
+  -- Returns: float (x), float (y)
+  -- Overloads
+  x, y = ImGui.CalcTextSize("Calculate me")
+  x, y = ImGui.CalcTextSize("Calculate me", " with an ending?")
+  x, y = ImGui.CalcTextSize("Calculate me", " with an ending?", true)
+  x, y = ImGui.CalcTextSize("Calculate me", " with an ending?", true, 100)
+```
+
+## Color Utilities
+```lua
+  -- ImGui.ColorConvertRGBtoHSV(...)
+  -- Parameters: float (r), float (g), float (b)
+  -- Returns: float (h), float (s), float (v)
+  h, s, v = ImGui.ColorConvertRGBtoHSV(1, 0, 0.5)
+  
+  -- ImGui.ColorConvertHSVtoRGB(...)
+  -- Parameters: float (h), float (s), float (v)
+  -- Returns: float (r), float (g), float (b)
+  r, g, b = ImGui.ColorConvertHSVtoRGB(1, 0, 0.5)
+```
