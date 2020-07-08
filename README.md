@@ -176,5 +176,56 @@
   
   -- ImGui.GetWindowContentRegionWidth()
   -- Returns: float (width)
-  x = ImGui.GetWindowContentRegionWidth()
+  width = ImGui.GetWindowContentRegionWidth()
+```
+
+## Windows Scrolling
+```lua
+  -- ImGui.GetScrollX()
+  -- Returns: float (x)
+  x = ImGui.GetScrollX()
+  
+  -- ImGui.GetScrollY()
+  -- Returns: float (y)
+  y = ImGui.GetScrollY()
+  
+  -- ImGui.GetScrollMaxX()
+  -- Returns: float (x)
+  x = ImGui.GetScrollMaxX()
+  
+  -- ImGui.GetScrollMaxY()
+  -- Returns: float (y)
+  y = ImGui.GetScrollMaxY()
+  
+  -- ImGui.SetScrollX(...)
+  -- Parameters: float (scroll_x)
+  ImGui.SetScrollX(0.7)
+  
+  -- ImGui.SetScrollY(...)
+  -- Parameters: float (scroll_y)
+  ImGui.SetScrollY(0.7)
+  
+  -- ImGui.SetScrollHereX(...)
+  -- Parameters: float (center_x_ratio) [O]
+  -- Overloads
+  ImGui.SetScrollHereX()
+  ImGui.SetScrollHereX(0.5)
+  
+  -- ImGui.SetScrollHereY(...)
+  -- Parameters: float (center_y_ratio) [O]
+  -- Overloads
+  ImGui.SetScrollHereY()
+  ImGui.SetScrollHereY(0.5)
+  
+  -- ImGui.SetScrollFromPosX(...)
+  -- Parameters: float (local_x), float (center_x_ratio) [O]
+  -- Overloads
+  ImGui.SetScrollFromPosX(10)
+  ImGui.SetScrollFromPosX(10, 0.5)
+  
+  -- ImGui.SetScrollFromPosY(...)
+  -- Parameters: float (local_y), float (center_y_ratio) [O]
+  -- Overloads
+  ImGui.SetScrollFromPosY(10)
+  ImGui.SetScrollFromPosY(10, 0.5)
 ```
