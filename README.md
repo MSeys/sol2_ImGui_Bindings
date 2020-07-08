@@ -988,6 +988,17 @@ activated = ImGui.MenuItem("Label")
 activated = ImGui.MenuItem("Label", "ALT+F4")
 selected, activated = ImGui.MenuItem("Label", "ALT+F4", selected)
 selected, activated = ImGui.MenuItem("Label", "ALT+F4", selected, true)
+```
 
-
+## Tooltips
+```lua
+  -- ImGui.BeginTooltip()
+  ImGui.BeginTooltip()
+  
+  -- ImGui.EndTooltip()
+  ImGui.EndTooltip()
+  
+  -- ImGui.SetTooltip(...)
+  -- Parameters: text (fmt)
+  ImGui.SetTooltip("Did you know that I have the high ground?")
 ```
