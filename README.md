@@ -905,3 +905,15 @@ Note: This binding does not give functions that can obtain an ImFont* from insid
   ImGui.SetNextItemOpen(true)
   ImGui.SetNextItemOpen(true, ImGuiCond.Always)
 ```
+
+## Widgets: Selectables
+```lua
+  -- ImGui.Selectable(...)
+  -- Parameters: text (label), bool (selected) [O], ImGuiSelectableFlags (flags) [O], float (size_x) [O], float (size_y) [O]
+  -- Returns: bool (selected)
+  -- Overloads
+  selected = ImGui.Selectable("Label")
+  selected = ImGui.Selectable("Label", selected)
+  selected = ImGui.Selectable("Label", selected, ImGuiSelectableFlags.AllowDoubleClick)
+  selected = ImGui.Selectable("Label", selected, ImGuiSelectableFlags.AllowDoubleClick, 100, 100)
+```
