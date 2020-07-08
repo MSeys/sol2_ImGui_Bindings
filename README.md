@@ -1222,3 +1222,79 @@ selected, activated = ImGui.MenuItem("Label", "ALT+F4", selected, true)
   ImGui.SetItemDefaultFocus()
   ImGui.SetItemDefaultFocus(5)
 ```
+
+## Item / Widgets Utilities
+```lua
+  -- ImGui.IsItemHovered(...)
+  -- Parameters: ImGuiHoveredFlags (flags) [O]
+  -- Returns: bool (hovered)
+  -- Overloads
+  hovered = ImGui.IsItemHovered()
+  hovered = ImGui.IsItemHovered(ImGuiHoveredFlags.ChildWindows)
+  
+  -- ImGui.IsItemActive()
+  -- Returns: bool (active)
+  active = ImGui.IsItemActive()
+  
+  -- ImGui.IsItemFocused()
+  -- Returns: bool (focused)
+  focused = ImGui.IsItemFocused()
+  
+  -- ImGui.IsItemClicked(...)
+  -- Parameters: ImGuiMouseButton (mouse_button) [O]
+  -- Returns: bool (clicked)
+  -- Overloads
+  clicked = ImGui.IsItemClicked()
+  clicked = ImGui.IsItemClicked(ImGuiMouseButton.Middle)
+  
+  -- ImGui.IsItemVisible()
+  -- Returns: bool (visible)
+  visible = ImGui.IsItemVisible()
+  
+  -- ImGui.IsItemEdited()
+  -- Returns: bool (edited)
+  edited = ImGui.IsItemEdited()
+  
+  -- ImGui.IsItemActivated()
+  -- Returns: bool (activated)
+  activated = ImGui.IsItemActivated()
+  
+  -- ImGui.IsItemDeactivated()
+  -- Returns: bool (deactivated)
+  deactivated = ImGui.IsItemDeactivated()
+  
+  -- ImGui.IsItemDeactivatedAfterEdit()
+  -- Returns: bool (deactivated_after_edit)
+  deactivated_after_edit = ImGui.IsItemDeactivatedAfterEdit()
+  
+  -- ImGui.IsItemToggledOpen()
+  -- Returns: bool (toggled_open)
+  toggled_open = ImGui.IsItemToggledOpen()
+  
+  -- ImGui.IsAnyItemHovered()
+  -- Returns: bool (any_item_hovered)
+  any_item_hovered = ImGui.IsAnyItemHovered()
+  
+   -- ImGui.IsAnyItemActive()
+  -- Returns: bool (any_item_active)
+  any_item_active = ImGui.IsAnyItemActive()
+  
+  -- ImGui.IsAnyItemFocused()
+  -- Returns: bool (any_item_focused)
+  any_item_focused = ImGui.IsAnyItemFocused()
+  
+  -- ImGui.GetItemRectMin()
+  -- Returns: float (x), float (y)
+  x, y = ImGui.GetItemRectMin()
+  
+  -- ImGui.GetItemRectMax()
+  -- Returns: float (x), float (y)
+  x, y = ImGui.GetItemRectMax()
+  
+  -- ImGui.GetItemRectSize()
+  -- Returns: float (x), float (y)
+  x, y = ImGui.GetItemRectSize()
+  
+  -- ImGui.SetItemAllowOverlap()
+  ImGui.SetItemAllowOverlap()
+```
