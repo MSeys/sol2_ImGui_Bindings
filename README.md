@@ -717,3 +717,102 @@ Note: This binding does not give functions that can obtain an ImFont* from insid
   value, used = ImGui.VSliderInt("Label", 100, 25, value, -10, 10)
   value, used = ImGui.VSliderInt("Label", 100, 25, value, -10, 10, "%d")
 ```
+
+## Widgets: Input with Keyboard
+```lua
+  -- ImGui.InputText(...)
+  -- Parameters: text (label), text (text), int (buf_size), ImGuiInputTextFlags (flags) [O]
+  -- Returns: text (text), bool (selected)
+  -- Overloads
+  text, selected = ImGui.InputText("Label", text, 100)
+  text, selected = ImGui.InputText("Label", text, 100, ImGuiInputTextFlags.ReadOnly)
+  
+  -- ImGui.InputTextMultiline(...)
+  -- Parameters: text (label), text (text), int (buf_size), float (size_x) [O], float (size_y) [O], ImGuiInputTextFlags (flags) [O]
+  -- Returns: text (text), bool (selected)
+  -- Overloads
+  text, selected = ImGui.InputTextMultiline("Label", text, 100)
+  text, selected = ImGui.InputTextMultiline("Label", text, 100, 200, 35)
+  text, selected = ImGui.InputTextMultiline("Label", text, 100, 200, 35, ImGuiInputTextFlags.ReadOnly)
+  
+  -- ImGui.InputTextWithHint(...)
+  -- Parameters: text (label), text (hint), text (text), int (buf_size), ImGuiInputTextFlags (flags) [O]
+  -- Returns: text (text), bool (selected)
+  -- Overloads
+  text, selected = ImGui.InputTextWithHint("Label", "Hint", text, 100)
+  text, selected = ImGui.InputTextWithHint("Label", "Hint", text, 100, ImGuiInputTextFlags.ReadOnly)
+  
+  -- ImGui.InputFloat(...)
+  -- Parameters: text (label), float (value), float (step) [O], float (step_fast) [O], text (format) [O], ImGuiInputTextFlags (flags) [O]
+  -- Returns: float (value), bool (used)
+  -- Overloads
+  value, used = ImGui.InputFloat("Label", value)
+  value, used = ImGui.InputFloat("Label", value, 1)
+  value, used = ImGui.InputFloat("Label", value, 1, 10)
+  value, used = ImGui.InputFloat("Label", value, 1, 10, "%.1f")
+  value, used = ImGui.InputFloat("Label", value, 1, 10, "%.1f", ImGuiInputTextFlags.None)
+  
+  -- ImGui.InputFloat2(...)
+  -- Parameters: text (label), table (values), text (format) [O], ImGuiInputTextFlags (flags) [O]
+  -- Returns: table (values), bool (used)
+  -- Overloads
+  values, used = ImGui.InputFloat2("Label", values)
+  values, used = ImGui.InputFloat2("Label", values, "%.1f")
+  values, used = ImGui.InputFloat2("Label", values, "%.1f", ImGuiInputTextFlags.None)
+  
+  -- ImGui.InputFloat3(...)
+  -- Parameters: text (label), table (values), text (format) [O], ImGuiInputTextFlags (flags) [O]
+  -- Returns: table (values), bool (used)
+  -- Overloads
+  values, used = ImGui.InputFloat3("Label", values)
+  values, used = ImGui.InputFloat3("Label", values, "%.1f")
+  values, used = ImGui.InputFloat3("Label", values, "%.1f", ImGuiInputTextFlags.None)
+  
+  -- ImGui.InputFloat4(...)
+  -- Parameters: text (label), table (values), text (format) [O], ImGuiInputTextFlags (flags) [O]
+  -- Returns: table (values), bool (used)
+  -- Overloads
+  values, used = ImGui.InputFloat4("Label", values)
+  values, used = ImGui.InputFloat4("Label", values, "%.1f")
+  values, used = ImGui.InputFloat4("Label", values, "%.1f", ImGuiInputTextFlags.None)
+  
+  -- ImGui.InputInt(...)
+  -- Parameters: text (label), int (value), int (step) [O], int (step_fast) [O], ImGuiInputTextFlags (flags) [O] 
+  -- Returns: int (value), bool (used)
+  -- Overloads
+  value, used = ImGui.InputInt("Label", value)
+  value, used = ImGui.InputInt("Label", value, 1)
+  value, used = ImGui.InputInt("Label", value, 1, 10)
+  value, used = ImGui.InputInt("Label", value, 1, 10, ImGuiInputTextFlags.None)
+  
+  -- ImGui.InputInt2(...)
+  -- Parameters: text (label), table (values), ImGuiInputTextFlags (flags) [O] 
+  -- Returns: table (values), bool (used)
+  -- Overloads
+  values, used = ImGui.InputInt2("Label", values)
+  values, used = ImGui.InputInt2("Label", values, ImGuiInputTextFlags.None)
+  
+  -- ImGui.InputInt3(...)
+  -- Parameters: text (label), table (values), ImGuiInputTextFlags (flags) [O] 
+  -- Returns: table (values), bool (used)
+  -- Overloads
+  values, used = ImGui.InputInt3("Label", values)
+  values, used = ImGui.InputInt3("Label", values, ImGuiInputTextFlags.None)
+  
+  -- ImGui.InputInt4(...)
+  -- Parameters: text (label), table (values), ImGuiInputTextFlags (flags) [O] 
+  -- Returns: table (values), bool (used)
+  -- Overloads
+  values, used = ImGui.InputInt4("Label", values)
+  values, used = ImGui.InputInt4("Label", values, ImGuiInputTextFlags.None)
+  
+  -- ImGui.InputDouble(...)
+  -- Parameters: text (label), double (value), double (step) [O], double (step_fast) [O], text (format) [O], ImGuiInputTextFlags (flags) [O]
+  -- Returns: double (value), bool (used)
+  -- Overloads
+  value, used = ImGui.InputDouble("Label", value)
+  value, used = ImGui.InputDouble("Label", value, 1)
+  value, used = ImGui.InputDouble("Label", value, 1, 10)
+  value, used = ImGui.InputDouble("Label", value, 1, 10, "%.4f")
+  value, used = ImGui.InputDouble("Label", value, 1, 10, "%.4f", ImGuiInputTextFlags.None)
+```
