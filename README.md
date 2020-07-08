@@ -279,3 +279,44 @@ Note: This binding does not give functions that can obtain an ImFont* from insid
   -- Returns: float (x), float (y)
   x, y = ImGui.GetFontTexUvWhitePixel()
 ```
+
+## Parameter Stacks (Current Window)
+```lua
+  -- ImGui.PushItemWidth(...)
+  -- Parameters: float (width)
+  ImGui.PushItemWidth(100)
+  
+  -- ImGui.PopItemWidth()
+  ImGui.PopItemWidth()
+  
+  -- ImGui.SetNextItemWidth(...)
+  -- Parameters: float (width)
+  ImGui.SetNextItemWidth(100)
+  
+  -- ImGui.CalcItemWidth()
+  -- Returns: float (width)
+  width = ImGui.CalcItemWidth()
+  
+  -- ImGui.PushTextWrapPos(...)
+  -- Parameters: float (wrap_local_pos_x) [O]
+  -- Overloads
+  ImGui.PushTextWrapPos()
+  ImGui.PushTextWrapPos(50)
+  
+  -- ImGui.PopTextWrapPos()
+  ImGui.PopTextWrapPos()
+  
+  -- ImGui.PushAllowKeyboardFocus(...)
+  -- Parameters: bool (allow_keyboard_focus)
+  ImGui.PushAllowKeyboardFocus(true)
+  
+  -- ImGui.PopAllowKeyboardFocus()
+  ImGui.PopAllowKeyboardFocus()
+  
+  -- ImGui.PushButtonRepeat(...)
+  -- Parameters: bool (repeat)
+  ImGui.PushButtonRepeat(true)
+  
+  -- ImGui.PopButtonRepeat()
+  ImGui.PopButtonRepeat()
+```
