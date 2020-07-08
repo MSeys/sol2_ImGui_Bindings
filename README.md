@@ -859,3 +859,49 @@ Note: This binding does not give functions that can obtain an ImFont* from insid
   -- Parameters: ImGuiColorEditFlags (flags)
   ImGui.SetColorEditOptions(ImGuiColorEditFlags.NoTooltip | ImGuiColorEditFlags_NoInputs)
 ```
+
+## Widgets: Trees
+```lua
+  -- ImGui.TreeNode(...)
+  -- Parameters: text (label), text (fmt) [O]
+  -- Returns: bool (open)
+  -- Overloads
+  open = ImGui.TreeNode("Label")
+  open = ImGui.TreeNode("Label", "Some Text")
+  
+  -- ImGui.TreeNodeEx(...)
+  -- Parameters: text (label), ImGuiTreeNodeFlags (flags) [O], text (fmt) [O]
+  -- Returns: bool (open)
+  -- Overloads
+  open = ImGui.TreeNodeEx("Label")
+  open = ImGui.TreeNodeEx("Label", ImGuiTreeNodeFlags.Selected)
+  open = ImGui.TreeNodeEx("Label", ImGuiTreeNodeFlags.Selected, "Some Text")
+  
+  -- ImGui.TreePush(...)
+  -- Parameters: text (str_id)
+  ImGui.TreePush("String ID")
+  
+  -- ImGui.TreePop()
+  ImGui.TreePop()
+  
+  -- ImGui.GetTreeNodeToLabelSpacing()
+  -- Returns: float (spacing)
+  spacing = ImGui.GetTreeNodeToLabelSpacing()
+  
+  -- ImGui.CollapsingHeader(...)
+  -- Parameters A: text (label), ImGuiTreeNodeFlags (flags) [O]
+  -- Parameters B: text (label), bool (open), ImGuiTreeNodeFlags (flags) [O]
+  -- Returns A: bool (notCollapsed)
+  -- Returns B: bool (open), bool (notCollapsed)
+  -- Overloads
+  notCollapsed = ImGui.CollapsingHeader("Label")
+  notCollapsed = ImGui.CollapsingHeader("Label", ImGuiTreeNodeFlags.Selected)
+  open, notCollapsed = ImGui.CollapsingHeader("Label", open)
+  open, notCollapsed = ImGui.CollapsingHeader("Label", open, ImGuiTreeNodeFlags.Selected)
+  
+  -- ImGui.SetNextItemOpen(...)
+  -- Parameters: bool (open), ImGuiCond (cond) [O]
+  -- Overloads
+  ImGui.SetNextItemOpen(true)
+  ImGui.SetNextItemOpen(true, ImGuiCond.Always)
+```
