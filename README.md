@@ -1002,3 +1002,71 @@ selected, activated = ImGui.MenuItem("Label", "ALT+F4", selected, true)
   -- Parameters: text (fmt)
   ImGui.SetTooltip("Did you know that I have the high ground?")
 ```
+
+## Popups, Modals
+```lua
+  -- ImGui.BeginPopup(...)
+  -- Parameters: text (str_id), ImGuiWindowFlags (flags) [O]
+  -- Returns: bool (open)
+  -- Overloads
+  open = ImGui.BeginPopup("String ID")
+  open = ImGui.BeginPopup("String ID", ImGuiWindowFlags.NoCollapse)
+  
+  -- ImGui.BeginPopupModal(...)
+  -- Parameters: text (name), bool (open) [O], ImGuiWindowFlags (flags) [O]
+  -- Returns: bool (open)
+  -- Overloads
+  open = ImGui.BeginPopupModal("Name")
+  open = ImGui.BeginPopupModal("Name", open)
+  open = ImGui.BeginPopupModal("Name", open, ImGuiWindowFlags.NoCollapse)
+  
+  -- ImGui.EndPopup()
+  ImGui.EndPopup()
+  
+  -- ImGui.OpenPopup(...)
+  -- Parameters: text (str_id), ImGuiPopupFlags (popup_flags)
+  -- Overloads
+  ImGui.OpenPopup("String ID")
+  ImGui.OpenPopup("String ID", ImGuiPopupFlags.NoOpenOverExistingPopup)
+  
+  -- ImGui.OpenPopupContextItem(...)
+  -- Parameters: text (str_id), ImGuiPopupFlags (popup_flags)
+  -- Returns: bool (open)
+  -- Overloads
+  open = ImGui.OpenPopupContextItem()
+  open = ImGui.OpenPopupContextItem("String ID")
+  open = ImGui.OpenPopupContextItem("String ID", ImGuiPopupFlags.NoOpenOverExistingPopup)
+  
+  -- ImGui.CloseCurrentPopup()
+  ImGui.CloseCurrentPopup()
+  
+  -- ImGui.BeginPopupContextItem(...)
+  -- Parameters: text (str_id), ImGuiPopupFlags (popup_flags)
+  -- Returns: bool (open)
+  -- Overloads
+  open = ImGui.BeginPopupContextItem()
+  open = ImGui.BeginPopupContextItem("String ID")
+  open = ImGui.BeginPopupContextItem("String ID", ImGuiPopupFlags.NoOpenOverExistingPopup)
+  
+  -- ImGui.BeginPopupContextWindow(...)
+  -- Parameters: text (str_id), ImGuiPopupFlags (popup_flags)
+  -- Returns: bool (open)
+  -- Overloads
+  open = ImGui.BeginPopupContextWindow()
+  open = ImGui.BeginPopupContextWindow("String ID")
+  open = ImGui.BeginPopupContextWindow("String ID", ImGuiPopupFlags.NoOpenOverExistingPopup)
+  
+  -- ImGui.BeginPopupContextVoid(...)
+  -- Parameters: text (str_id), ImGuiPopupFlags (popup_flags)
+  -- Returns: bool (open)
+  -- Overloads
+  open = ImGui.BeginPopupContextVoid()
+  open = ImGui.BeginPopupContextVoid("String ID")
+  open = ImGui.BeginPopupContextVoid("String ID", ImGuiPopupFlags.NoOpenOverExistingPopup)
+  
+  -- ImGui.IsPopupOpen(...)
+  -- Parameters: text (str_id), ImGuiPopupFlags (popup_flags)
+  -- Overloads
+  ImGui.IsPopupOpen("String ID")
+  ImGui.IsPopupOpen("String ID", ImGuiPopupFlags.NoOpenOverExistingPopup)
+```
