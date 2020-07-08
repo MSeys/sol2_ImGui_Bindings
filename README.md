@@ -414,3 +414,26 @@ Note: This binding does not give functions that can obtain an ImFont* from insid
   -- Returns: float (height)
   height = ImGui.GetFrameHeightWithSpacing()
 ```
+
+## ID Stack / Scopes
+```lua
+  -- ImGui.PushID(...)
+  -- Parameters A: text (str_id)
+  -- Parameters B: text (str_id_begin), text (str_id_end)
+  -- Parameters C: int (int_id)
+  -- Overloads
+  ImGui.PushID("MyID")
+  ImGui.PushID("MyID_Begin", "MyID_End")
+  ImGui.PushID(1)
+  
+  -- ImGui.PopID()
+  ImGui.PopID()
+  
+  -- ImGui.GetID(...)
+  -- Parameters A: text (str_id)
+  -- Parameters B: text (str_id_begin), text (str_id_end)
+  -- Returns: int (id)
+  -- Overloads
+  id = ImGui.PushID("MyID")
+  id = ImGui.PushID("MyID_Begin", "MyID_End")
+```
