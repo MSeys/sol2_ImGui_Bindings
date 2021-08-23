@@ -4,9 +4,6 @@ Welcome to the sol2 ImGui bindings.
 I spent my time making these over the last few days.
 I hope you think they are useful as there's no others to my knowledge.
 
-If you liked what I did, you can donate to me at https://paypal.me/mattseys.
-It would be appreciated!
-
 Enjoy! 
 
 # Notes
