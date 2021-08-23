@@ -7,6 +7,7 @@ I hope you think they are useful as there's no others to my knowledge.
 Enjoy! 
 
 # Notes
+- These bindings are now outdated, several people have branched this repo and updated it, do check those out!
 - This uses the latest sol2 version, the repo is located at https://github.com/ThePhD/sol2/.
 - These bindings are based on one of the latest version of ImGui Docking Branch. Comment what you don't need or breaks.
 - I've hid the U32 related function with a define (SOL_IMGUI_USE_COLOR_U32), if you wish to use these, define that!
