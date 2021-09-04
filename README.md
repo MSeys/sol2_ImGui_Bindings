@@ -6,9 +6,12 @@ I hope you think they are useful as there's no others to my knowledge.
 
 Enjoy! 
 
+# DEPRECATED
+Hi, just an additional note that this specific branch is deprecated and does not run with the current version. Some people have forked this and updated it, please check those as I can't maintain this.
+https://github.com/MSeys/sol2_ImGui_Bindings/network/members
+
 # Notes
-- These bindings are now outdated, several people have forked this repo and updated it, do check those out!
-- This uses the latest sol2 version, the repo is located at https://github.com/ThePhD/sol2/.
+- This uses the latest sol2 version (as of July 2020), the repo is located at https://github.com/ThePhD/sol2/.
 - These bindings are based on one of the latest version of ImGui Docking Branch. Comment what you don't need or breaks.
 - I've hid the U32 related function with a define (SOL_IMGUI_USE_COLOR_U32), if you wish to use these, define that!
 - There's also another define hidden (CUSTOM_IMGUI) which is for my own adapted imgui version with a few more enum values, ignore if you wish.
